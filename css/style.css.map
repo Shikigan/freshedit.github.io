@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.css",
-	"sourceRoot": "C:/Hugo/Freshedit",
+	"sourceRoot": "C:/Hugo/freshedit",
 	"sources": [
 		"themes/hugo-fresh/assets/style.sass",
 		"themes/bulma/bulma.sass",
