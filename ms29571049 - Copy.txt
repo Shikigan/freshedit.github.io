@@ -1,0 +1,5 @@
+﻿{
+  "Description": "Domain ownership verification file for Microsoft 365 - place in the website root",
+  "Domain": "luminasolutions.co.nz",
+  "Id": "7c262b82-2514-46e5-85d4-c28f6f570a31"
+}

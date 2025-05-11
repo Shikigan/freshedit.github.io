@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="499.69 0.472 79.006 102.39">
-  <svg width="1500" height="109" data-version="2" data-id="lg_qXGbZ05cNB2got1IA0" viewBox="0 0 507 109" x="0" y="0" transform="matrix(0.9999999999999999, 0, 0, 0.9999999999999999, -5.296287206888792, 77.92772977982288)">
-    <path fill="#273380" d="M34.283 29.14h3.06v70.35h-3.06Zm18.35 0h3.06V84.2h24.47v3.06h-24.47v3.05h24.47v3.06h-24.47v3.06h24.47v3.06h-27.53Zm-6.12 0h3.06v70.35h-3.06Zm-6.11 0h3.06v70.35h-3.06Z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="501.923 1.573 85.41 99.359">
+  <svg width="1500" height="109" data-version="2" data-id="lg_qXGbZ05cNB2got1IA0" viewBox="0 0 507 109" x="0" y="0" transform="matrix(0.9861932992935182, 0, 0, 0.9861932992935182, -1107.5898039118754, 329.00049591932816)">
+    <path fill="#1e242c" d="M34.283 29.14h3.06v70.35h-3.06Zm18.35 0h3.06V84.2h24.47v3.06h-24.47v3.05h24.47v3.06h-24.47v3.06h24.47v3.06h-27.53Zm-6.12 0h3.06v70.35h-3.06Zm-6.11 0h3.06v70.35h-3.06Z"/>
     <rect width="45.88" height="70.35" x="-22.94" y="-35.17" fill="none" rx="0" ry="0" transform="translate(57.72 64.81)"/>
-    <path fill="#273380" stroke="#273380" stroke-width="3" d="M34.67 21.534 30.572 2.72m-3.671 25.625L6.337 19.643m21.456 18.642-16.29 12.628m45.665-40.522-10.32 14.168"/>
+    <path fill="#1e242c" stroke="#1e242c" stroke-width="3" d="M34.67 21.534 30.572 2.72m-3.671 25.625L6.337 19.643m21.456 18.642-16.29 12.628m45.665-40.522-10.32 14.168"/>
     <rect width="17.63" height="28.55" x="-8.81" y="-14.28" fill="none" rx="0" ry="0" transform="translate(111.87 44.4)"/>
     <rect width="23.44" height="28.94" x="-11.72" y="-14.47" fill="none" rx="0" ry="0" transform="translate(137.17 44.59)"/>
     <rect width="30.53" height="28.55" x="-15.27" y="-14.28" fill="none" rx="0" ry="0" transform="translate(171.15 44.4)"/>

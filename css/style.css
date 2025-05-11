@@ -7838,7 +7838,7 @@ Navbar
     font-family: 'Bebas Neue', sans-serif;
     /* Apply Bebas Neue font */
     font-weight: bold;
-    color: #5460a8;
+    color: #1e242c;
     font-size: 19px;
     overflow: visible !important;
     max-width: none !important; }
@@ -8030,6 +8030,29 @@ img.pushed-image {
     color: #A9ABAC;
     font-size: 1rem;
     font-weight: 400; }
+
+/* Ensure that inactive tab content is hidden */
+.tab-pane {
+  display: none; }
+
+/* Only display active tab content */
+.tab-pane.is-active {
+  display: block; }
+
+/* Style for active tab */
+.tabs ul li.is-active a {
+  font-weight: bold;
+  color: #3273dc;
+  /* Adjust color as needed */ }
+
+/* Style for tabs themselves */
+.tabs ul {
+  display: flex;
+  justify-content: center; }
+
+.tabs ul li {
+  padding: 0.5rem 1rem;
+  cursor: pointer; }
 
 /* ==========================================================================
 Hero styles
