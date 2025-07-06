@@ -8078,18 +8078,40 @@ Hero styles
 Hero background + overlay + positioning
 ========================================================================== */
 .hero-background {
-  background-image: url("/images/new/roadlighting.png");
+  background-image: var(--hero-desktop);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   height: 85vh;
   position: relative; }
   @media screen and (max-width: 768px) {
     .hero-background {
-      background-image: url("/images/new/roadlighting-mobile.png");
+      background-image: var(--hero-mobile);
       background-attachment: scroll;
       background-position: center top; } }
+  @media screen and (min-width: 769px) {
+    .hero-background {
+      background-attachment: fixed;
+      background-position: 0% 2%; } }
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; }
+
+.hero-text-lower {
+  position: relative;
+  z-index: 1;
+  padding-top: 18rem;
+  padding-bottom: 3rem; }
+  @media screen and (max-width: 768px) {
+    .hero-text-lower {
+      padding-top: 6rem;
+      padding-bottom: 2rem; } }
 /* ==========================================================================
 Fresh Footer
 ========================================================================== */
