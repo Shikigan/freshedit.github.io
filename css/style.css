@@ -7835,11 +7835,11 @@ Navbar
   .navbar.is-fresh .navbar-end {
     align-items: center; }
   .navbar.is-fresh .navbar-item {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Inter', sans-serif;
     /* Apply Bebas Neue font */
     font-weight: bold;
     color: #1e242c;
-    font-size: 19px;
+    font-size: 15px;
     overflow: visible !important;
     max-width: none !important; }
     .navbar.is-fresh .navbar-item.is-secondary:hover {
@@ -8078,12 +8078,18 @@ Hero styles
 Hero background + overlay + positioning
 ========================================================================== */
 .hero-background {
+  background-image: var(--hero-desktop);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: scroll;
   height: 85vh;
   position: relative; }
+  @media screen and (max-width: 768px) {
+    .hero-background {
+      background-image: var(--hero-mobile);
+      background-attachment: scroll;
+      background-position: center top; } }
   @media screen and (min-width: 769px) {
     .hero-background {
       background-attachment: fixed;
