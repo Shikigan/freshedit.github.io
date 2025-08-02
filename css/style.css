@@ -8105,7 +8105,7 @@ img.pushed-image {
 .responsive-product-image {
   display: block;
   width: 100%;
-  max-width: 700px;
+  max-width: 642px;
   height: auto;
   border-radius: 1rem;
   object-fit: contain;
@@ -8927,6 +8927,35 @@ body #backtotop a {
   /* Firefox 18- */
   color: #cecece; }
 
+.breadcrumbs {
+  font-size: 0.95rem;
+  color: #000;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: inherit;
+  /* ✅ force consistent font */ }
+
+.breadcrumb-link {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+  /* Match current page styling */ }
+
+.breadcrumb-link:hover {
+  color: #43ac9d; }
+
+.breadcrumb-separator {
+  margin: 0 0.25rem;
+  color: #000; }
+
+.breadcrumb-current {
+  color: #000;
+  font-weight: 500; }
+
 /* ============================
    HERO + PRODUCT SECTION
    ============================ */
@@ -8958,8 +8987,34 @@ body #backtotop a {
 
 .custom-eko .image-holder img {
   width: 550px;
-  height: 420px;
+  height: auto;
   border-radius: 8px; }
+
+.image-container {
+  width: 500px;
+  /* or any size you want */
+  height: 420px;
+  /* fixed height */
+  overflow: hidden;
+  /* clip the image inside */
+  position: relative;
+  /* required for positioning image absolutely if needed */
+  border-radius: 8px;
+  background: #ffffff;
+  /* optional: placeholder background */ }
+
+.image-container img {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.1);
+  /* ✅ Zoom in manually */
+  transform-origin: center center;
+  /* ✅ Where to zoom from */ }
 
 .custom-eko .text-content {
   flex: 1 1 0%;
