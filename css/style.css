@@ -9005,7 +9005,7 @@ body #backtotop a {
 
 .image-container img {
   position: absolute;
-  top: 1rem;
+  top: 0;
   left: 1rem;
   width: auto;
   height: 100%;
@@ -9025,7 +9025,7 @@ body #backtotop a {
   margin-left: auto; }
 
 .custom-eko .text-content h3 {
-  margin-top: rem;
+  margin-top: 0rem;
   margin-bottom: 1.2rem;
   font-size: 1.25rem; }
 
@@ -9151,11 +9151,14 @@ body #backtotop a {
   background: #ffffff;
   padding-top: 3rem;
   padding-right: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: 0rem;
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
+
+.specs-section > *:last-child {
+  margin-bottom: 0 !important; }
 
 .specs-section .features-content h2 {
   font-size: 1.5rem;
@@ -9248,13 +9251,25 @@ body #backtotop a {
     /* Reduce box width on small screens if needed */
     text-align: left; } }
 
+.specs-section {
+  padding-bottom: 0 !important;
+  /* ✅ forces bottom padding to zero */
+  margin-bottom: 0 !important;
+  /* ✅ prevents extra vertical spacing */ }
+
+.downloads-section {
+  margin-top: 0 !important; }
+
 /* ============================
    DOWNLOAD SECTION
    ============================ */
 .downloads-section {
-  padding: 3rem 3rem;
-  background-color: #f6f9fa;
-  margin-bottom: 5rem; }
+  margin-top: 0 !important;
+  background-color: #ffffff;
+  margin-bottom: 2rem; }
+
+.downloads-section > *:first-child {
+  margin-top: 0 !important; }
 
 .downloads-container {
   max-width: 1200px;
