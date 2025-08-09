@@ -8123,8 +8123,9 @@ img.pushed-image {
 Hero styles
 ========================================================================== */
 .hero-body {
-  padding-top: 6rem;
-  padding-bottom: 6rem; }
+  /* Mobile-first: keep paddings light; desktop restores them below */
+  padding-top: 0;
+  padding-bottom: 0; }
   .hero-body .title,
   .hero-body .subtitle {
     font-family: 'Open Sans', sans-serif; }
@@ -8132,82 +8133,97 @@ Hero styles
     font-weight: 700; }
   .hero-body .subtitle.is-muted {
     color: #999; }
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 769px) {
     .hero-body {
-      /* Remove big paddings on mobile; layout handles spacing */
-      padding-top: 0;
-      padding-bottom: 0; } }
+      padding-top: 6rem;
+      padding-bottom: 6rem; } }
 .hero-foot img.partner-logo {
   height: 70px; }
 
 /* ==========================================================================
 Hero background + overlay + positioning
 ========================================================================== */
+/* Mobile-first defaults */
 .hero-background {
-  background-image: var(--hero-desktop);
-  /* default desktop image */
+  /* Your template may set background-image inline; that's fine.
+     We only control placement & layout here. */
   background-size: cover;
-  background-position: center 35%;
+  background-position: center 48%;
+  /* show a bit more of the lower part */
   background-repeat: no-repeat;
   background-attachment: scroll;
-  height: 85vh;
+  /* Mobile-safe height: avoid huge full-screen blocks */
+  height: auto;
+  min-height: 64vh;
+  /* fallback for older browsers */
+  min-height: 64dvh;
+  /* modern, ignores browser UI chrome */
   position: relative;
-  /* Desktop fine-tune */
-  /* Mobile fixes */ }
+  /* Place content lower and centered for mobile */
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  /* Safe-area top padding without tripping Sass */
+  padding-top: calc(env(safe-area-inset-top, 0px) + 2rem);
+  padding-bottom: 2rem;
+  /* If you use CSS vars for separate images, keep them here */
+  background-image: var(--hero-mobile); }
   @media screen and (min-width: 769px) {
     .hero-background {
+      /* Desktop image & framing */
+      background-image: var(--hero-desktop);
+      background-position: center 18%;
       background-attachment: scroll;
       /* keep scroll so position actually applies */
-      background-position: center 18%;
-      height: 85vh; } }
-  @media screen and (max-width: 768px) {
-    .hero-background {
-      background-image: var(--hero-mobile);
-      background-size: cover;
-      background-position: center 45%;
-      /* look a bit lower on mobile */
-      background-attachment: scroll;
-      /* Use dynamic viewport height so iOS/Android browser chrome doesn't squash it */
-      height: auto;
-      min-height: 65dvh;
-      /* Vertically place the content near the bottom in a stable way */
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      /* Safe-area aware top padding (Sass-safe) */
-      padding-top: calc(env(safe-area-inset-top, 0px) + 3rem);
-      padding-bottom: 2rem; } }
+      /* Desktop height: feels “heroic” but not overwhelming */
+      height: 85vh;
+      min-height: 720px;
+      /* optional floor for big monitors */
+      padding-top: 0;
+      padding-bottom: 0;
+      /* Center content vertically for desktop */
+      align-items: center; } }
 .hero-overlay {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.24);
+  /* slightly stronger for readability */
   position: absolute;
   inset: 0;
   z-index: 0; }
-  @media screen and (max-width: 768px) {
+  @media screen and (min-width: 769px) {
     .hero-overlay {
-      /* Slightly stronger on mobile for text readability over busy images */
-      background-color: rgba(0, 0, 0, 0.3); } }
+      background-color: rgba(0, 0, 0, 0.2); } }
 .hero-text-lower {
   position: relative;
   z-index: 1;
-  padding-top: 18rem;
-  padding-bottom: 3rem; }
-  @media screen and (max-width: 768px) {
+  /* Mobile: no extra vertical padding; flex controls placement */
+  padding-top: 0;
+  padding-bottom: 0;
+  width: 100%; }
+  @media screen and (min-width: 769px) {
     .hero-text-lower {
-      /* Let the flex alignment handle vertical placement */
-      padding-top: 0;
-      padding-bottom: 0;
-      width: 100%; } }
-/* Typography tweaks for small screens */
+      padding-top: 18rem;
+      padding-bottom: 3rem;
+      width: auto; } }
+/* ==========================================================================
+Type scale & wrapping on small screens
+========================================================================== */
 @media screen and (max-width: 768px) {
   .hero-body .title {
-    /* Prevent wrapping weirdness on narrow phones */
-    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    font-size: clamp(1.6rem, 6.2vw, 2.2rem);
     line-height: 1.15;
-    text-wrap: balance; }
+    text-wrap: balance;
+    /* safe to ignore where unsupported */
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 22ch;
+    /* keep lines readable */ }
   .hero-body .subtitle {
     font-size: clamp(1rem, 3.8vw, 1.125rem);
     line-height: 1.35;
-    opacity: 0.95; } }
+    opacity: 0.95;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 36ch; } }
 
 /* Visually hidden helper for screen readers */
 .visually-hidden {
