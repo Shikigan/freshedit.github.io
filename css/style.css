@@ -8134,8 +8134,9 @@ Hero styles
     color: #999; }
   @media screen and (max-width: 768px) {
     .hero-body {
-      padding-top: 4rem;
-      padding-bottom: 4rem; } }
+      /* Remove big paddings on mobile; layout handles spacing */
+      padding-top: 0;
+      padding-bottom: 0; } }
 .hero-foot img.partner-logo {
   height: 70px; }
 
@@ -8144,30 +8145,47 @@ Hero background + overlay + positioning
 ========================================================================== */
 .hero-background {
   background-image: var(--hero-desktop);
+  /* default desktop image */
   background-size: cover;
-  background-position: center center;
+  background-position: center 35%;
   background-repeat: no-repeat;
   background-attachment: scroll;
   height: 85vh;
-  position: relative; }
+  position: relative;
+  /* Desktop fine-tune */
+  /* Mobile fixes */ }
+  @media screen and (min-width: 769px) {
+    .hero-background {
+      background-attachment: scroll;
+      /* keep scroll so position actually applies */
+      background-position: center 18%;
+      height: 85vh; } }
   @media screen and (max-width: 768px) {
     .hero-background {
       background-image: var(--hero-mobile);
+      background-size: cover;
+      background-position: center 45%;
+      /* look a bit lower on mobile */
       background-attachment: scroll;
-      background-position: center top; } }
-  @media screen and (min-width: 769px) {
-    .hero-background {
-      background-attachment: fixed;
-      background-position: 0% 2%; } }
+      /* Use dynamic viewport height so iOS/Android browser chrome doesn't squash it */
+      height: auto;
+      min-height: 65dvh;
+      /* Vertically place the content near the bottom in a stable way */
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      /* Safe-area aware top padding (Sass-safe) */
+      padding-top: calc(env(safe-area-inset-top, 0px) + 3rem);
+      padding-bottom: 2rem; } }
 .hero-overlay {
   background-color: rgba(0, 0, 0, 0.2);
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   z-index: 0; }
-
+  @media screen and (max-width: 768px) {
+    .hero-overlay {
+      /* Slightly stronger on mobile for text readability over busy images */
+      background-color: rgba(0, 0, 0, 0.3); } }
 .hero-text-lower {
   position: relative;
   z-index: 1;
@@ -8175,8 +8193,23 @@ Hero background + overlay + positioning
   padding-bottom: 3rem; }
   @media screen and (max-width: 768px) {
     .hero-text-lower {
-      padding-top: 6rem;
-      padding-bottom: 2rem; } }
+      /* Let the flex alignment handle vertical placement */
+      padding-top: 0;
+      padding-bottom: 0;
+      width: 100%; } }
+/* Typography tweaks for small screens */
+@media screen and (max-width: 768px) {
+  .hero-body .title {
+    /* Prevent wrapping weirdness on narrow phones */
+    font-size: clamp(1.75rem, 6vw, 2.25rem);
+    line-height: 1.15;
+    text-wrap: balance; }
+  .hero-body .subtitle {
+    font-size: clamp(1rem, 3.8vw, 1.125rem);
+    line-height: 1.35;
+    opacity: 0.95; } }
+
+/* Visually hidden helper for screen readers */
 .visually-hidden {
   position: absolute !important;
   height: 1px;
