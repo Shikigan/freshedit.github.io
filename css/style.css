@@ -7848,7 +7848,7 @@ Navbar
     .navbar.is-fresh .navbar-item.has-dropdown {
       padding: 10px 0; }
       .navbar.is-fresh .navbar-item.has-dropdown .navbar-link {
-        color: #999; }
+        color: inherit; }
         .navbar.is-fresh .navbar-item.has-dropdown .navbar-link:after {
           top: 55%;
           height: 0.5em;
@@ -7894,6 +7894,14 @@ Navbar
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
   #navbar-clone.is-active {
     transform: translateY(0); }
+
+/* Hide hover dropdowns while we programmatically scroll */
+body.no-hover .navbar-item.has-dropdown:hover .navbar-dropdown {
+  display: none !important; }
+
+/* Also close if a mobile click left it 'is-active' */
+body.no-hover .navbar-item.has-dropdown.is-active .navbar-dropdown {
+  display: none !important; }
 
 /* ==========================================================================
 Dropdown styles

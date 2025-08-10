@@ -16,7 +16,7 @@
 <meta name="author" content="Lumina Solutions">
 
 
-<link rel="canonical" href="https://www.luminasolutions.co.nz/projects/">
+<link rel="canonical" href="https://www.luminasolutions.co.nz/ajax-solar-bollard/">
 
 
 
@@ -37,10 +37,12 @@
 
 
 
-<meta property="og:url" content="https://www.luminasolutions.co.nz/projects/">
+<meta property="og:url" content="https://www.luminasolutions.co.nz/ajax-solar-bollard/">
   <meta property="og:site_name" content="Lumina Solutions">
   <meta property="og:title" content="Lumina Solutions">
-  <meta property="og:description" content="PROJECTSA selection of past projects we&#39;ve successfully completed.PRIVATE ROWPUBLIC STAIRWAY LIGHTINGOVERBRIDGE RAMPMOTORWAY LIGHTING DESIGN">
+  <meta property="og:description" content="Solar Bollard — Charging UpWatch this space — details are on their way.
+1%… 37%… 73%… almost there.
+Think of this page as a battery. We’re storing sunshine and polishing the specs.">
   <meta property="og:locale" content="en">
   <meta property="og:type" content="article">
     <meta property="og:image" content="https://www.luminasolutions.co.nz/images/new/favicon_social.jpg">
@@ -56,7 +58,7 @@
 
 
 
-    <link rel="canonical" href="https://www.luminasolutions.co.nz/projects/">
+    <link rel="canonical" href="https://www.luminasolutions.co.nz/ajax-solar-bollard/">
 
     
     
@@ -336,125 +338,168 @@ document.addEventListener('DOMContentLoaded', function () {
       </div>
   
       <div class="content">
-        <style>
-  body {
-    background-color: #f4f4f4;
-    color: white; /* Makes all text white */
-    font-family: Arial, sans-serif; /* Optional: adds a clean font */
-  }
+        <!-- Solar Bollard: Coming Soon (drop this into your .md content) -->
+<div class="sb-coming" role="status" aria-live="polite">
+  <div class="sb-hero">
+    <div class="sb-sun" aria-hidden="true">
+      <div class="sb-core"></div>
+      <div class="sb-rays"></div>
+    </div>
+    <h1 class="sb-title">Solar Bollard — Charging Up</h1>
+    <p class="sb-tagline">Watch this space — details are on their way.</p>
+  </div>
+  <div class="sb-meter" aria-label="Page content charging meter">
+    <div class="sb-fill"></div>
+  </div>
+  <p class="sb-percent" aria-hidden="true">1%… 37%… 73%… almost there.</p>
+  <p class="sb-footnote">
+    Think of this page as a battery. We’re storing sunshine and polishing the specs.
+  </p>
+</div>
+<style>
+/* === Scoped styles (safe to move into your shared CSS if preferred) === */
+.sb-coming {
+  --sb-bg: transparent;
+  --sb-fg: #0a0a0a;
+  --sb-muted: #6b7280;
+  --sb-accent: #f59e0b;  /* warm solar amber */
+  --sb-accent-2: #22c55e; /* ready/green hint */
 
-  h1, h2 {
-    color: black !important; /* Change title color to black */
-    text-align: center; /* Centers the title and subtitle */
-    margin-bottom: 0 !important; /* Removes any margin below the title */
-    padding-bottom: 0 !important; /* Ensures there's no padding below */
-  }
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 3rem 1.25rem;
+  background: var(--sb-bg);
+  color: var(--sb-fg);
+  max-width: 60rem;
+  margin: 0 auto;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
 
-  h2 {
-    font-size: 1rem !important; /* Makes h2 smaller */
-    font-weight: normal !important; /* Removes boldness from h2 */
-  }
+@media (prefers-color-scheme: dark) {
+  .sb-coming { --sb-fg: #e5e7eb; --sb-muted: #9ca3af; }
+}
 
-  .container {
-    text-align: center; /* Centers the text */
-  }
+.sb-hero { display: grid; place-items: center; gap: 0.5rem; }
 
-  .image-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    border-radius: 8px;
-  }
+.sb-title {
+  font-size: clamp(1.5rem, 2.5vw + 1rem, 2.25rem);
+  line-height: 1.2;
+  margin: 0.25rem 0 0;
+}
 
-  .image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+.sb-tagline {
+  margin: 0;
+  color: var(--sb-muted);
+  font-size: clamp(0.95rem, 0.5vw + 0.75rem, 1.1rem);
+}
 
-  .image-text {
-    position: absolute;
-    top: 90%; /* Aligns the text */
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
-    font-size: 13px;
-    font-weight: normal;
-    background-color: transparent;
-    padding: 5px;
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden;     /* Hides overflow */
-    text-overflow: ellipsis; /* Adds ... if the text is too long */
-    max-width: 90%; /* Optional: keeps it within bounds */
-  }
+/* Sun + rays */
+.sb-sun {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.25rem;
+}
+.sb-core {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe8b3 35%, var(--sb-accent) 65%, #d97706 100%);
+  box-shadow: 0 0 24px 6px rgba(245, 158, 11, 0.45);
+}
+.sb-rays, .sb-rays::before {
+  content: "";
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  box-shadow:
+    0 -45px 0 0 var(--sb-accent),
+    0 45px 0 0 var(--sb-accent),
+    45px 0 0 0 var(--sb-accent),
+    -45px 0 0 0 var(--sb-accent),
+    32px 32px 0 0 var(--sb-accent),
+    -32px -32px 0 0 var(--sb-accent),
+    32px -32px 0 0 var(--sb-accent),
+    -32px 32px 0 0 var(--sb-accent);
+  animation: sb-spin 10s linear infinite;
+  opacity: 0.8;
+}
+.sb-rays::before {
+  transform: rotate(22.5deg) scale(0.88);
+  opacity: 0.5;
+}
+
+/* Charging meter */
+.sb-meter {
+  width: min(680px, 92vw);
+  height: 16px;
+  border-radius: 999px;
+  outline: 2px solid color-mix(in oklab, var(--sb-fg) 20%, transparent);
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--sb-accent) 25%, transparent),
+      transparent 40% 60%,
+      color-mix(in oklab, var(--sb-accent-2) 25%, transparent)
+    );
+}
+.sb-fill {
+  position: absolute; inset: 0;
+  transform-origin: left center;
+  background:
+    linear-gradient(90deg,
+      var(--sb-accent),
+      color-mix(in oklab, var(--sb-accent, #f59e0b) 70%, var(--sb-accent-2, #22c55e))
+    );
+  background-size: 200% 100%;
+  animation:
+    sb-charge 6s ease-in-out infinite,
+    sb-sheen 2.4s linear infinite;
+  filter: saturate(1.1);
+}
+.sb-percent {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--sb-muted);
+  margin: 0.25rem 0 0;
+}
+.sb-footnote {
+  margin: 0.5rem 0 0;
+  color: var(--sb-muted);
+  font-size: 0.95rem;
+}
+
+/* Animations */
+@keyframes sb-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes sb-charge {
+  0%   { transform: scaleX(0.05); }
+  30%  { transform: scaleX(0.45); }
+  60%  { transform: scaleX(0.78); }
+  85%  { transform: scaleX(0.93); }
+  100% { transform: scaleX(0.98); }
+}
+@keyframes sb-sheen {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sb-rays, .sb-rays::before, .sb-fill { animation: none !important; }
+  .sb-fill { transform: scaleX(0.6); }
+  .sb-percent { display: none; }
+}
 </style>
-<div class="container">
-  <h1>PROJECTS</h1>
-  <h2>A selection of past projects we've successfully completed.</h2>
-</div>
-<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; padding: 20px; border-radius: 8px;">
-  <div class="image-container">
-    <img src="/images/projects/driveway1.png" alt="Project 1">
-    <div class="image-text">PRIVATE ROW</div>
-  </div>
-  <div class="image-container">
-    <img src="/images/projects/staircase1.png" alt="Project 2">
-    <div class="image-text">PUBLIC STAIRWAY LIGHTING</div>
-  </div>
-  <div class="image-container">
-    <img src="/images/projects/rail_ramp.png" alt="Project 3">
-    <div class="image-text">OVERBRIDGE RAMP</div>
-  </div>
-  <div class="image-container">
-    <img src="/images/projects/motorway.png" alt="Project 4">
-    <div class="image-text">MOTORWAY LIGHTING DESIGN</div>
-  </div>
-</div>
 
       </div>
     </div>
 </section>
 
 
-
-  
-  
-
-<footer class="footer footer-dark" style="padding-bottom: 1rem;">
-  <div class="container">
-    <div class="columns is-vcentered is-mobile" style="min-height: 100px;">
-
-      
-      <div class="column is-flex is-align-items-center" style="padding-top: 0rem;">
-        <div class="footer-logo">
-          <img src="/images/new/logo_header.svg" alt="Site Logo" style="height: 60px;">
-        </div>
-      </div>
-
-      
-      <footer role="contentinfo" style="background-color: #27292b; padding: 1rem 0;">
-  <div style="
-    text-align: center;
-    color: #ffffff;
-    font-weight: 500;
-    font-size: 0.95rem;
-  ">
-    Developed by <span class="developer-name">Lumina Solutions</span><br>
-    &copy; 2025 Lumina Solutions. All rights reserved.
-  </div>
-</footer>
-
-      
-      <div class="column is-flex is-justify-content-end is-align-items-center" style="padding-top: 0.5rem;">
-        <a href="https://bulma.io" target="_blank" style="display: inline-block;">
-          <img src="/images/logos/made-with-bulma.png" alt="Made with Bulma" style="height: 40px;">
-        </a>
-      </div>
-
-    </div>
-  </div>
-</footer>
 
   
 
