@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://www.luminasolutions.co.nz/about/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/ajax-solar-bollard/</loc>
+    <loc>https://www.luminasolutions.co.nz/ajax-solar-bollard/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/eko-solar-wall-light/</loc>
+    <loc>https://www.luminasolutions.co.nz/eko-solar-wall-light/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://www.luminasolutions.co.nz/projects/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://www.luminasolutions.co.nz/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
