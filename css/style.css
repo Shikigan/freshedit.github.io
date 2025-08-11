@@ -7895,13 +7895,21 @@ Navbar
   #navbar-clone.is-active {
     transform: translateY(0); }
 
-/* Hide hover dropdowns while we programmatically scroll */
-body.no-hover .navbar-item.has-dropdown:hover .navbar-dropdown {
+/* Force-close dropdowns right after clicking PRODUCTS, even if still hovered */
+body.force-close-dropdown .navbar .navbar-item.has-dropdown .navbar-dropdown {
   display: none !important; }
 
-/* Also close if a mobile click left it 'is-active' */
-body.no-hover .navbar-item.has-dropdown.is-active .navbar-dropdown {
+body.force-close-dropdown .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
   display: none !important; }
+
+/* (Optional) avoid stuck visual state on parent while closing */
+body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
+  pointer-events: none;
+  /* briefly ignore hover while we close */ }
+
+/* Change dropdown link text color on hover */
+.navbar .navbar-dropdown .navbar-item:hover {
+  color: #1ae0b6 !important; }
 
 /* ==========================================================================
 Dropdown styles
@@ -9322,7 +9330,7 @@ body #backtotop a {
 
 .download-box:hover {
   transform: translateY(-5px);
-  border-color: #43ac9d;
+  border-color: #1ae0b6;
   box-shadow: 0 6px 18px rgba(67, 172, 157, 0.25); }
 
 /* Wrapper for icon and title */
@@ -9333,17 +9341,18 @@ body #backtotop a {
   gap: 0.9rem;
   /* spacing between icon and title */ }
 
-/* Icon container */
-.download-icon {
+.download-row {
   display: flex;
+  gap: 2rem;
+  /* reduced from 5rem so 4 boxes fit in one row */
   justify-content: center;
-  align-items: center; }
+  flex-wrap: wrap; }
 
-/* SVG icon */
 .download-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 40px;
+  height: 40px;
   fill: #43ac9d;
+  /* same green colour for all icons including warranty */
   transition: transform 0.3s ease; }
 
 /* Animate icon on hover */
@@ -9378,6 +9387,20 @@ body #backtotop a {
 .download-arrow {
   font-size: 1rem;
   color: #43ac9d; }
+
+/* Tighter gap so 4 fit comfortably */
+.download-row {
+  gap: 2rem;
+  /* was 5rem */ }
+
+/* Force one row on desktop, distribute space nicely */
+@media (min-width: 992px) {
+  .download-row {
+    flex-wrap: nowrap;
+    /* no wrapping on desktop */
+    justify-content: space-between;
+    gap: 1.5rem;
+    /* slightly tighter for mid-width desktops */ } }
 
 /* ==========================================================================
    Fresh Footer
