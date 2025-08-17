@@ -8135,6 +8135,99 @@ img.pushed-image {
   .responsive-product-image {
     max-width: 90vw; } }
 
+/* === Section 5 form-controls: force stable borders in all states === */
+#section5 input.input,
+#section5 textarea.textarea {
+  display: block;
+  /* never flex */
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #0a0a0a;
+  border-radius: 0px;
+  transition: border-color .15s ease, box-shadow .15s ease; }
+
+/* Focus / active */
+#section5 input.input:focus,
+#section5 input.input:active,
+#section5 textarea.textarea:focus,
+#section5 textarea.textarea:active {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem rgba(50, 115, 220, 0.25) !important; }
+
+/* Hover should not remove border */
+/* Autofill (Chrome/Safari) can “wash out” borders — pin it down */
+#section5 input.input:-webkit-autofill,
+#section5 textarea.textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  /* keep white bg */
+  -webkit-text-fill-color: #0a0a0a !important;
+  caret-color: #0a0a0a;
+  box-shadow: 0 0 0 0.125rem rgba(50, 115, 220, 0.25) !important; }
+
+/* Size consistency (matches your inline heights) */
+#section5 input.input.is-small {
+  height: 2.5rem;
+  line-height: 2.5rem;
+  /* vertically centers text nicely */ }
+
+#section5 textarea.textarea {
+  min-height: 6rem; }
+
+/* === Section 5 form-controls: stable borders === */
+#section5 input.input,
+#section5 textarea.textarea {
+  display: block;
+  /* stop flex glitches */
+  box-sizing: border-box;
+  border: 1px solid #dbdbdb;
+  /* plain border */
+  border-radius: 5px;
+  background-color: #fff;
+  /* ensure contrast */
+  outline: none; }
+
+/* Keep the same border on focus/active */
+#section5 input.input:focus,
+#section5 input.input:active,
+#section5 textarea.textarea:focus,
+#section5 textarea.textarea:active {
+  border: 1px solid #dbdbdb !important;
+  box-shadow: none !important;
+  outline: none !important; }
+
+/* Prevent Chrome autofill from removing borders */
+#section5 input.input:-webkit-autofill,
+#section5 textarea.textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+  border: 1px solid #dbdbdb !important; }
+
+/* Section 5: keep subtitle from overflowing */
+#section5 .title-wrapper {
+  max-width: 640px;
+  /* give it a bit more room than 500px */
+  margin: 0 auto;
+  padding: 0 1rem;
+  /* breathing room on mobile */ }
+
+#section5 .title-wrapper .subtitle {
+  white-space: normal;
+  /* allow wrapping */
+  word-break: break-word;
+  /* break very long words/URLs */
+  overflow-wrap: anywhere;
+  /* modern wrap for long strings */
+  hyphens: auto;
+  /* nicer breaks when possible */
+  max-width: 100%;
+  line-height: 1.4; }
+
+/* Optional: clamp to 2 lines with ellipsis */
+#section5 .title-wrapper .subtitle.clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden; }
+
 /* ==========================================================================
 Hero styles
 ========================================================================== */
