@@ -643,34 +643,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 <section class="section section-light-grey is-medium" id="section5">
-
   
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "mainEntity": {
-        "@type": "LocalBusiness",
-        "name": "Lumina Solutions",
-        "url": "https://luminasolutions.co.nz",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Auckland",
-          "addressRegion": "Auckland",
-          "addressCountry": "NZ"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+64 22 3127875",
-          "contactType": "Customer Support",
-          "areaServed": "NZ",
-          "availableLanguage": "English"
-        }
-      }
-    }
-  </script>
 
   <div class="container">
     <div class="title-wrapper has-text-centered" id="contactFormHeading">
@@ -682,7 +656,6 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="content-wrapper" style="margin-top: 3rem;">
       <div class="columns">
         <div class="column is-6 is-offset-3">
-          
           <form id="contactForm" action="https://www.luminasolutions.co.nz/api/contact" method="POST" aria-labelledby="contactFormHeading" novalidate>
             <div class="columns is-multiline">
               <div class="column is-6">
@@ -702,9 +675,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
               
               <div class="column is-12" style="display:flex; justify-content:center;">
-                
                 <input type="hidden" id="cf-turnstile-response" name="cf-turnstile-response">
-                
                 <div id="cf-turnstile-widget" class="cf-turnstile" style="min-height:70px; display:flex; justify-content:center; align-items:center;"></div>
               </div>
 
@@ -717,11 +688,13 @@ document.addEventListener('DOMContentLoaded', function () {
           </form>
 
           
+          <div id="formStatus" style="margin-top:1rem; text-align:center; font-size:0.9rem;"></div>
+
           <script>
             (function renderTurnstile(){
               if (!window.turnstile) return setTimeout(renderTurnstile, 50);
               window.turnstile.render('#cf-turnstile-widget', {
-                sitekey: '0x4AAAAAABsZHGYGgT4wKnjP',   
+                sitekey: '0x4AAAAAABsZHGYGgT4wKnjP',
                 theme: 'light',
                 callback: function (token) {
                   document.getElementById('cf-turnstile-response').value = token;
@@ -737,15 +710,32 @@ document.addEventListener('DOMContentLoaded', function () {
             })();
 
             document.getElementById('contactForm').addEventListener('submit', function (e) {
+              e.preventDefault();
               var hidden = document.getElementById('cf-turnstile-response');
-              try {
-                var t = window.turnstile.getResponse('#cf-turnstile-widget') || '';
-                if (t) hidden.value = t;
-              } catch (err) {}
               if (!hidden.value) {
-                e.preventDefault();
-                alert('Please complete the verification.');
+                document.getElementById('formStatus').innerHTML = "<span style='color:red;'>⚠️ Please complete the verification.</span>";
+                return;
               }
+
+              var formData = new FormData(this);
+              fetch(this.action, {
+                method: this.method,
+                body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                if (data.ok) {
+                  document.getElementById('formStatus').innerHTML = "<span style='color:green;'>✅ Thank you! Your message was sent successfully.</span>";
+                  this.reset();
+                  window.turnstile.reset('#cf-turnstile-widget');
+                } else {
+                  document.getElementById('formStatus').innerHTML = "<span style='color:red;'>❌ Submission failed. Please try again.</span>";
+                }
+              })
+              .catch(err => {
+                console.error(err);
+                document.getElementById('formStatus').innerHTML = "<span style='color:red;'>❌ An error occurred. Please try again.</span>";
+              });
             });
           </script>
 
