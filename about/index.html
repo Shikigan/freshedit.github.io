@@ -88,7 +88,7 @@ Watch this space. 👀">
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.c8d3457d1c0126be1ac6a95ebad3397c3cd6479337fbd557cf0ef8187fea78ea.css" integrity="sha256-yNNFfRwBJr4axqleutM5fDzWR5M3&#43;9VXzw74GH/qeOo=">
+<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.c3893031cf1caaf4430e8db4ce74d44d6105ce73f767ccb8303ba220ea47deed.css" integrity="sha256-w4kwMc8cqvRDDo20znTUTWEFznP3Z8y4MDuiIOpH3u0=">
 <link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/icons.css">
 
   </head>
@@ -114,7 +114,8 @@ Watch this space. 👀">
       </a>
 
       
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+         data-target="navbar-menu" aria-controls="navbar-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -128,19 +129,19 @@ Watch this space. 👀">
             <a href="https://www.luminasolutions.co.nz/" class="navbar-item is-secondary">HOME</a>
             <a href="https://www.luminasolutions.co.nz/projects/" class="navbar-item is-secondary">PROJECTS</a>
             <div class="navbar-item has-dropdown is-hoverable">
-                <a
-                  class="navbar-link"
-                  href="https://www.luminasolutions.co.nz/#section2"
-                >PRODUCTS</a>
+              <a class="navbar-link"
+                 href="https://www.luminasolutions.co.nz/#section2">
+                 PRODUCTS
+              </a>
               <div class="navbar-dropdown">
-                  <a
-                    class="navbar-item"
-                    href="https://www.luminasolutions.co.nz/eko-solar-wall-light/"
-                  >EKO Solar Wall Light</a>
-                  <a
-                    class="navbar-item"
-                    href="https://www.luminasolutions.co.nz/ajax-solar-bollard/"
-                  >AJAX Solar Bollard</a>
+                  <a class="navbar-item"
+                     href="https://www.luminasolutions.co.nz/eko-solar-wall-light/">
+                     EKO Solar Wall Light
+                  </a>
+                  <a class="navbar-item"
+                     href="https://www.luminasolutions.co.nz/ajax-solar-bollard/">
+                     AJAX Solar Bollard
+                  </a>
               </div>
             </div>
             <a href="https://www.luminasolutions.co.nz/about/" class="navbar-item is-secondary">ABOUT</a>
@@ -156,27 +157,42 @@ Watch this space. 👀">
   </div>
 </nav>
 
-
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  var burgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-  burgers.forEach(function (burger) {
-    burger.addEventListener('click', function () {
-      var targetId = burger.dataset.target;
-      var target = document.getElementById(targetId);
-      burger.classList.toggle('is-active');
-      if (target) target.classList.toggle('is-active');
+(function () {
+  function ready(fn){ (document.readyState !== 'loading') ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+
+  ready(function () {
+    var burgers = document.querySelectorAll('.navbar-burger');
+    if (!burgers.length) return;
+
+    burgers.forEach(function (burger) {
+      var targetId = burger.dataset.target || burger.getAttribute('aria-controls');
+      var target = targetId ? document.getElementById(targetId) : null;
+
+      if (!target) return;
+
+      burger.addEventListener('click', function () {
+        var willOpen = !burger.classList.contains('is-active');
+        burger.classList.toggle('is-active');
+        target.classList.toggle('is-active');
+        burger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+        document.documentElement.classList.toggle('is-clipped', willOpen);
+      });
+    });
+
+    
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest('#navbar-menu .navbar-item, #cloned-navbar-menu .navbar-item');
+      if (!link) return;
+      document.querySelectorAll('.navbar-burger.is-active').forEach(function(b){
+        b.classList.remove('is-active');
+        b.setAttribute('aria-expanded','false');
+      });
+      document.querySelectorAll('.navbar-menu.is-active').forEach(function(m){ m.classList.remove('is-active'); });
+      document.documentElement.classList.remove('is-clipped');
     });
   });
-
-  
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('#navbar-menu .navbar-item, #cloned-navbar-menu .navbar-item');
-    if (!link) return;
-    document.querySelectorAll('.navbar-burger.is-active').forEach(function(b){ b.classList.remove('is-active'); });
-    document.querySelectorAll('.navbar-menu.is-active').forEach(function(m){ m.classList.remove('is-active'); });
-  });
-});
+})();
 </script>
 
 
