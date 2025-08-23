@@ -84,7 +84,7 @@
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.c3893031cf1caaf4430e8db4ce74d44d6105ce73f767ccb8303ba220ea47deed.css" integrity="sha256-w4kwMc8cqvRDDo20znTUTWEFznP3Z8y4MDuiIOpH3u0=">
+<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.e0e8d46d5407357c2d4190642b9a5679db22d119a1cc743d439d4fa43a4f7f52.css" integrity="sha256-4OjUbVQHNXwtQZBkK5pWedsi0RmhzHQ9Q51PpDpPf1I=">
 <link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/icons.css">
 
   </head>
@@ -112,35 +112,32 @@
           style="height: 30px; max-width: 600px; width: auto;">
       </a>
 
-      
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
-         data-target="navbar-menu" aria-controls="navbar-menu">
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
       </a>
     </div>
 
-    
-    <div id="navbar-menu" class="navbar-menu" style="flex-grow: 1;">
+    <div id="navbar-menu" class="navbar-menu is-flex is-align-items-center" style="flex-grow: 1;">
 
       <div class="navbar-end is-flex is-align-items-center">
             <a href="https://www.luminasolutions.co.nz/" class="navbar-item is-secondary">HOME</a>
             <a href="https://www.luminasolutions.co.nz/projects/" class="navbar-item is-secondary">PROJECTS</a>
             <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link"
-                 href="https://www.luminasolutions.co.nz/#section2">
-                 PRODUCTS
-              </a>
+                <a
+                  class="navbar-link"
+                  href="https://www.luminasolutions.co.nz/#section2"
+                >PRODUCTS</a>
               <div class="navbar-dropdown">
-                  <a class="navbar-item"
-                     href="https://www.luminasolutions.co.nz/eko-solar-wall-light/">
-                     EKO Solar Wall Light
-                  </a>
-                  <a class="navbar-item"
-                     href="https://www.luminasolutions.co.nz/ajax-solar-bollard/">
-                     AJAX Solar Bollard
-                  </a>
+                  <a
+                    class="navbar-item"
+                    href="https://www.luminasolutions.co.nz/eko-solar-wall-light/"
+                  >EKO Solar Wall Light</a>
+                  <a
+                    class="navbar-item"
+                    href="https://www.luminasolutions.co.nz/ajax-solar-bollard/"
+                  >AJAX Solar Bollard</a>
               </div>
             </div>
             <a href="https://www.luminasolutions.co.nz/about/" class="navbar-item is-secondary">ABOUT</a>
@@ -157,41 +154,132 @@
 </nav>
 
 <script>
-(function () {
-  function ready(fn){ (document.readyState !== 'loading') ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+document.addEventListener('DOMContentLoaded', function () {
+  var HOME_PATH = new URL('\/', window.location.origin).pathname;
+  var HASH = '#section2';
 
-  ready(function () {
-    var burgers = document.querySelectorAll('.navbar-burger');
-    if (!burgers.length) return;
+  
+  function getScrollParent(el) {
+    var style, overflowY;
+    for (var p = el; p && p !== document.body; p = p.parentElement) {
+      style = window.getComputedStyle(p);
+      overflowY = style.overflowY;
+      if (overflowY === 'auto' || overflowY === 'scroll') return p;
+    }
+    
+    return document.scrollingElement || document.documentElement;
+  }
 
-    burgers.forEach(function (burger) {
-      var targetId = burger.dataset.target || burger.getAttribute('aria-controls');
-      var target = targetId ? document.getElementById(targetId) : null;
+  function scrollToTarget(target) {
+    var root = getScrollParent(target);
+    var navClone = document.getElementById('navbar-clone');
+    var navMain  = document.querySelector('.navbar.is-fresh');
+    var visibleNav = (navClone && navClone.classList.contains('is-active')) ? navClone : navMain;
+    var offset = visibleNav ? visibleNav.getBoundingClientRect().height : 0;
 
-      if (!target) return;
+    var targetTop = target.getBoundingClientRect().top + (root === document.documentElement ? window.pageYOffset : root.scrollTop) - offset;
 
-      burger.addEventListener('click', function () {
-        var willOpen = !burger.classList.contains('is-active');
-        burger.classList.toggle('is-active');
-        target.classList.toggle('is-active');
-        burger.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
-        document.documentElement.classList.toggle('is-clipped', willOpen);
-      });
-    });
+    if (root === document.documentElement) {
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    } else {
+      root.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
+  }
+
+  
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+
+    var href = a.getAttribute('href') || '';
+    
+    var url;
+    try { url = new URL(href, window.location.href); } catch (_) { return; }
+    if (url.hash !== HASH) return;
 
     
-    document.addEventListener('click', function (e) {
-      var link = e.target.closest('#navbar-menu .navbar-item, #cloned-navbar-menu .navbar-item');
-      if (!link) return;
-      document.querySelectorAll('.navbar-burger.is-active').forEach(function(b){
-        b.classList.remove('is-active');
-        b.setAttribute('aria-expanded','false');
-      });
-      document.querySelectorAll('.navbar-menu.is-active').forEach(function(m){ m.classList.remove('is-active'); });
-      document.documentElement.classList.remove('is-clipped');
-    });
-  });
-})();
+    var onHome = window.location.pathname === HOME_PATH;
+    e.preventDefault(); 
+
+    if (!onHome) {
+      window.location.assign(HOME_PATH + HASH);
+      return;
+    }
+
+    
+    var target = document.getElementById(HASH.slice(1));
+    if (!target) {
+      
+      window.location.hash = HASH;
+      return;
+    }
+
+    
+    if (window.location.hash === HASH && history && history.replaceState) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    scrollToTarget(target);
+
+    
+    if (history && history.replaceState) {
+      history.replaceState(null, '', HASH);
+    }
+
+    
+    document.getElementById('navbar-menu')?.classList.remove('is-active');
+    document.querySelector('.navbar-burger')?.classList.remove('is-active');
+  }, true); 
+});
+</script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var HOME_PATH = new URL('\/', window.location.origin).pathname;
+  var HASH = '#section2';
+  var CLOSE_MS = 500; 
+
+  function closeDropdownUI() {
+    
+    document.querySelectorAll('.navbar .navbar-item.has-dropdown.is-active')
+      .forEach(function(el){ el.classList.remove('is-active'); });
+
+    
+    document.body.classList.add('force-close-dropdown');
+    setTimeout(function(){ document.body.classList.remove('force-close-dropdown'); }, CLOSE_MS);
+  }
+
+  function scrollToSection2IfNeeded() {
+    var target = document.getElementById('section2');
+    if (!target) return;
+    
+    
+    
+    
+    
+    
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('.navbar .navbar-link[href="https://www.luminasolutions.co.nz/#section2"], .navbar .navbar-link[href="#section2"]');
+    if (!link) return;
+
+    
+    closeDropdownUI();
+
+    
+    
+    
+    
+    
+    
+    
+
+    
+    try { link.blur(); } catch(_) {}
+  }, true); 
+});
 </script>
 
     
