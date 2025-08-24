@@ -64,26 +64,18 @@ Watch this space. 👀">
     <link rel="canonical" href="https://www.luminasolutions.co.nz/about/">
 
     
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     
     <link rel="icon" type="image/png" href="https://www.luminasolutions.co.nz/images/new/favicon.png">
 
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css" />
-
     
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
 
-
-
-    
     <title>Lumina Solutions</title>
-    
     
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
@@ -115,32 +107,19 @@ Watch this space. 👀">
 
       
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </a>
     </div>
 
     <div id="navbar-menu" class="navbar-menu is-flex is-align-items-center" style="flex-grow: 1;">
-      
-
       <div class="navbar-end is-flex is-align-items-center">
             <a href="https://www.luminasolutions.co.nz/" class="navbar-item is-secondary">HOME</a>
             <a href="https://www.luminasolutions.co.nz/projects/" class="navbar-item is-secondary">PROJECTS</a>
             <div class="navbar-item has-dropdown is-hoverable">
-                <a
-                  class="navbar-link"
-                  href="https://www.luminasolutions.co.nz/#section2"
-                >PRODUCTS</a>
+                <a class="navbar-link" href="https://www.luminasolutions.co.nz/#section2">PRODUCTS</a>
               <div class="navbar-dropdown">
-                  <a
-                    class="navbar-item"
-                    href="https://www.luminasolutions.co.nz/eko-solar-wall-light/"
-                  >EKO Solar Wall Light</a>
-                  <a
-                    class="navbar-item"
-                    href="https://www.luminasolutions.co.nz/ajax-solar-bollard/"
-                  >AJAX Solar Bollard</a>
+                  <a class="navbar-item" href="https://www.luminasolutions.co.nz/eko-solar-wall-light/">EKO Solar Wall Light</a>
+                  <a class="navbar-item" href="https://www.luminasolutions.co.nz/ajax-solar-bollard/">AJAX Solar Bollard</a>
               </div>
             </div>
             <a href="https://www.luminasolutions.co.nz/about/" class="navbar-item is-secondary">ABOUT</a>
@@ -151,105 +130,14 @@ Watch this space. 👀">
               <span>contact@luminasolutions.co.nz</span>
             </a>
       </div>
-
     </div>
   </div>
 </nav>
 
-<script>
- 
-document.addEventListener('DOMContentLoaded', function () {
-  var HOME_PATH = new URL('\/', window.location.origin).pathname;
-  var HASH = '#section2';
-
-  function getScrollParent(el) {
-    var style, overflowY;
-    for (var p = el; p && p !== document.body; p = p.parentElement) {
-      style = window.getComputedStyle(p);
-      overflowY = style.overflowY;
-      if (overflowY === 'auto' || overflowY === 'scroll') return p;
-    }
-    return document.scrollingElement || document.documentElement;
-  }
-
-  function scrollToTarget(target) {
-    var root = getScrollParent(target);
-    var navClone = document.getElementById('navbar-clone');
-    var navMain  = document.querySelector('.navbar.is-fresh');
-    var visibleNav = (navClone && navClone.classList.contains('is-active')) ? navClone : navMain;
-    var offset = visibleNav ? visibleNav.getBoundingClientRect().height : 0;
-
-    var targetTop = target.getBoundingClientRect().top + (root === document.documentElement ? window.pageYOffset : root.scrollTop) - offset;
-
-    if (root === document.documentElement) {
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    } else {
-      root.scrollTo({ top: targetTop, behavior: 'smooth' });
-    }
-  }
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest('a[href]');
-    if (!a) return;
-
-    var href = a.getAttribute('href') || '';
-    var url;
-    try { url = new URL(href, window.location.href); } catch (_) { return; }
-    if (url.hash !== HASH) return;
-
-    var onHome = window.location.pathname === HOME_PATH;
-    e.preventDefault();
-
-    if (!onHome) {
-      window.location.assign(HOME_PATH + HASH);
-      return;
-    }
-
-    var target = document.getElementById(HASH.slice(1));
-    if (!target) {
-      window.location.hash = HASH;
-      return;
-    }
-
-    if (window.location.hash === HASH && history && history.replaceState) {
-      history.replaceState(null, '', window.location.pathname + window.location.search);
-    }
-
-    scrollToTarget(target);
-
-    if (history && history.replaceState) {
-      history.replaceState(null, '', HASH);
-    }
-
-    document.getElementById('navbar-menu')?.classList.remove('is-active');
-    document.querySelector('.navbar-burger')?.classList.remove('is-active');
-  }, true);
-});
-</script>
 
 <script>
  
-document.addEventListener('DOMContentLoaded', function () {
-  var HOME_PATH = new URL('\/', window.location.origin).pathname;
-  var HASH = '#section2';
-  var CLOSE_MS = 500;
-
-  function closeDropdownUI() {
-    document.querySelectorAll('.navbar .navbar-item.has-dropdown.is-active')
-      .forEach(function(el){ el.classList.remove('is-active'); });
-
-    document.body.classList.add('force-close-dropdown');
-    setTimeout(function(){ document.body.classList.remove('force-close-dropdown'); }, CLOSE_MS);
-  }
-
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('.navbar .navbar-link[href="https://www.luminasolutions.co.nz/#section2"], .navbar .navbar-link[href="#section2"]');
-    if (!link) return;
-
-    closeDropdownUI();
-    try { link.blur(); } catch(_) {}
-  }, true);
-});
+… (keep your two scripts exactly as you had them) …
 </script>
 
 
@@ -336,6 +224,10 @@ Stay curious.<br>
     
     <div id="backtotop"><a href="#"></a></div>
 
+    
+    
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="https://unpkg.com/feather-icons"></script>
 <script src="https://www.luminasolutions.co.nz/js/fresh.js"></script>
@@ -344,16 +236,14 @@ Stay curious.<br>
 
 
 <script>
-(function () {
+document.addEventListener('DOMContentLoaded', function () {
   var mq = window.matchMedia('(max-width: 1023px)');
   var sidebar = document.getElementById('mobile-sidebar');
   if (!sidebar) return;
 
-  
   function openSidebar(triggerEl) {
     sidebar.classList.add('is-active');
     document.documentElement.classList.add('is-clipped'); 
-    
     var wrap = triggerEl && triggerEl.querySelector('.menu-icon-wrapper');
     if (wrap) wrap.classList.add('open');
   }
@@ -390,13 +280,12 @@ Stay curious.<br>
   });
 
   
-  mq.addEventListener ? mq.addEventListener('change', function () {
-    if (!mq.matches) closeSidebar();
-  }) : mq.addListener(function(){ if (!mq.matches) closeSidebar(); });
+  if (mq.addEventListener) mq.addEventListener('change', function () { if (!mq.matches) closeSidebar(); });
+  else mq.addListener(function () { if (!mq.matches) closeSidebar(); });
 
   
   if (window.feather && feather.replace) feather.replace();
-})();
+});
 </script>
 
   </body>
