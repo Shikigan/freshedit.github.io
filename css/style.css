@@ -7796,14 +7796,20 @@ Main SCSS file / Fresh
 /* ==========================================================================
 Color variables
 ========================================================================== */
-/* ========================================================================== 
+/* ==========================================================================
 Navbar
 ========================================================================== */
+/* Base navbar block */
 .navbar.is-fresh {
   position: relative;
   min-height: 6rem;
   transition: all .3s;
-  z-index: 99; }
+  z-index: 99;
+  /* Burger size only; visibility handled by Bulma */
+  /* Brand / logo */
+  /* Remove Bulma bg on hover */
+  /* Items & dropdowns */
+  /* Fixed modifier (Fresh sticky behavior) */ }
   .navbar.is-fresh .container {
     min-height: 6rem; }
   .navbar.is-fresh.no-shadow {
@@ -7874,6 +7880,7 @@ Navbar
       .navbar.is-fresh.is-fixed a:hover {
         color: #4FC1EA; }
 
+/* Cloned sticky navbar container */
 #navbar-clone {
   position: fixed;
   top: 0;
@@ -7887,8 +7894,9 @@ Navbar
     transform: translateY(0); }
 
 /* ===============================
-   FIX: Burger toggle on mobile
+   Bulma-correct burger behavior
    =============================== */
+/* Hidden by default on mobile; Bulma shows it on desktop automatically */
 .navbar-menu {
   display: none; }
 
@@ -7897,18 +7905,27 @@ Navbar
   width: 100%;
   background: #fff; }
 
+/* Mobile layout of the dropdown */
 @media (max-width: 1023px) {
   .navbar-menu.is-active {
     position: absolute;
     top: 100%;
     left: 0;
-    z-index: 20; }
+    z-index: 20;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); }
   .navbar-menu .navbar-end {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem; } }
+    align-items: stretch;
+    padding: 1rem; }
+  .navbar-menu .navbar-item {
+    width: 100%; } }
 
-/* Force-close dropdowns right after clicking PRODUCTS */
+/* Desktop: always show menu as flex (Bulma default) */
+@media (min-width: 1024px) {
+  .navbar-menu {
+    display: flex !important; } }
+
+/* Optional: help when forcing dropdown to close after click */
 body.force-close-dropdown .navbar .navbar-item.has-dropdown .navbar-dropdown {
   display: none !important; }
 
@@ -7918,7 +7935,7 @@ body.force-close-dropdown .navbar .navbar-item.has-dropdown.is-active .navbar-dr
 body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
   pointer-events: none; }
 
-/* Change dropdown link text color on hover */
+/* Hover color in dropdown */
 .navbar .navbar-dropdown .navbar-item:hover {
   color: #1ae0b6 !important; }
 

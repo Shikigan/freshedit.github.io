@@ -59,31 +59,24 @@
     <link rel="canonical" href="https://www.luminasolutions.co.nz/projects/">
 
     
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     
     <link rel="icon" type="image/png" href="https://www.luminasolutions.co.nz/images/new/favicon.png">
 
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css" />
-
     
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
 
-
-
-    
     <title>Lumina Solutions</title>
-    
+
     
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.e7c8ebc957a1be6c11ce4263bd6958817839274db45269d72618603ed2b49252.css" integrity="sha256-58jryVehvmwRzkJjvWlYgXg5J020UmnXJhhgPtK0klI=">
+<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.d206f3a841d7e1b324866b26383cc82e1287860f414552ff3ef6a2add7b8bfae.css" integrity="sha256-0gbzqEHX4bMkhmsmODzILhKHhg9BRVL/Pvairde4v64=">
 <link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/icons.css">
 
   </head>
@@ -470,6 +463,19 @@ document.addEventListener('DOMContentLoaded', function () {
 <script src="https://www.luminasolutions.co.nz/js/fresh.js"></script>
 <script src="https://www.luminasolutions.co.nz/js/jquery.panelslider.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var burgers=[].slice.call(document.querySelectorAll('.navbar-burger'));
+  burgers.forEach(function(b){
+    b.addEventListener('click',function(){
+      var t=document.getElementById(b.dataset.target);
+      b.classList.toggle('is-active'); if(t) t.classList.toggle('is-active');
+    });
+  });
+});
+</script>
 
   </body>
 </html>
