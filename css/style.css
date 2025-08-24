@@ -9541,6 +9541,32 @@ body #backtotop a {
     gap: 1.5rem;
     /* slightly tighter for mid-width desktops */ } }
 
+.block-heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem; }
+
+.block-heading h1 {
+  margin: 0; }
+
+.note-box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* aligns with top of H1 */
+  text-align: left;
+  /* ← align text from the left */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1ae0b6;
+  line-height: 1.3;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #1ae0b6;
+  /* grey border only */
+  border-radius: 4px;
+  background-color: transparent; }
+
 /* ==========================================================================
    Fresh Footer
    ========================================================================== */
