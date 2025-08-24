@@ -7797,27 +7797,91 @@ Main SCSS file / Fresh
 Color variables
 ========================================================================== */
 /* ==========================================================================
-Navbar (Fresh-compatible)
+Navbar
 ========================================================================== */
 .navbar.is-fresh {
   position: relative;
+  min-height: 6rem;
   transition: all .3s;
-  z-index: 99;
-  /* Optional: light hover polish for dropdown link */ }
+  z-index: 99; }
+  .navbar.is-fresh .container {
+    min-height: 6rem; }
+  .navbar.is-fresh.no-shadow {
+    box-shadow: none !important; }
   .navbar.is-fresh .navbar-burger {
     width: 4rem;
     height: 4rem; }
+  .navbar.is-fresh .navbar-brand {
+    min-height: 6rem !important;
+    /* Keep height the same */
+    max-width: 600px !important;
+    /* Your cap */
+    width: 100% !important;
+    /* Keep your full width */
+    display: flex;
+    justify-content: flex-start;
+    /* Align brand to the left */ }
+    .navbar.is-fresh .navbar-brand img {
+      max-height: none !important;
+      height: 55px !important;
+      /* Keep height consistent */
+      width: auto !important;
+      /* Let width scale naturally */
+      max-width: 500px;
+      /* Optional cap */
+      margin-top: 6px;
+      /* Your original offset */ }
+  .navbar.is-fresh:hover .navbar-item {
+    background: transparent !important; }
   .navbar.is-fresh .navbar-end {
     align-items: center; }
-  .navbar.is-fresh .navbar-item.has-dropdown .navbar-link:after {
-    top: 55%;
-    height: 0.5em;
-    width: 0.5em;
-    border-width: 2px; }
-  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
-    min-width: 220px; }
+  .navbar.is-fresh .navbar-item {
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    color: #1e242c;
+    font-size: 15px;
+    overflow: visible !important;
+    max-width: none !important; }
+    .navbar.is-fresh .navbar-item.is-secondary:hover {
+      color: #0dceae !important; }
+    .navbar.is-fresh .navbar-item.has-dropdown {
+      padding: 10px 0; }
+      .navbar.is-fresh .navbar-item.has-dropdown .navbar-link {
+        color: inherit; }
+        .navbar.is-fresh .navbar-item.has-dropdown .navbar-link:after {
+          top: 55%;
+          height: 0.5em;
+          width: 0.5em;
+          border-width: 2px;
+          border-color: #999; }
+      .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
+        top: 3.4rem;
+        min-width: 220px;
+        margin-top: 4px;
+        border-top-color: #0dceae; }
+        .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown .navbar-item {
+          padding: 10px 20px; }
+      .navbar.is-fresh .navbar-item.has-dropdown:hover .navbar-link {
+        color: #0dceae; }
+        .navbar.is-fresh .navbar-item.has-dropdown:hover .navbar-link:after {
+          border-color: #0dceae; }
+    .navbar.is-fresh .navbar-item .signup {
+      display: block;
+      line-height: 0;
+      font-size: .9rem !important; }
+  .navbar.is-fresh.is-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 6rem !important;
+    background: #fff;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
+    .navbar.is-fresh.is-fixed a {
+      color: #444F60; }
+      .navbar.is-fresh.is-fixed a:hover {
+        color: #4FC1EA; }
 
-/* Sticky clone animation container */
 #navbar-clone {
   position: fixed;
   top: 0;
@@ -7827,32 +7891,71 @@ Navbar (Fresh-compatible)
   transform: translateY(-100%);
   z-index: 100;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
+  #navbar-clone.is-active {
+    transform: translateY(0); }
 
-#navbar-clone.is-active {
-  transform: translateY(0); }
+/* Force-close dropdowns right after clicking PRODUCTS, even if still hovered */
+body.force-close-dropdown .navbar .navbar-item.has-dropdown .navbar-dropdown {
+  display: none !important; }
 
-/* === Bulma parity guards === */
-/* Mobile (<= 1023px): burger visible, menu hidden until active */
+body.force-close-dropdown .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
+  display: none !important; }
+
+/* (Optional) avoid stuck visual state on parent while closing */
+body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
+  pointer-events: none;
+  /* briefly ignore hover while we close */ }
+
+/* Change dropdown link text color on hover */
+.navbar .navbar-dropdown .navbar-item:hover {
+  color: #1ae0b6 !important; }
+
+/* ==========================================================================
+   MOBILE-ONLY PATCH (Fresh-like behavior) — keeps your desktop styling intact
+   - Burger opens a vertical dropdown BELOW the header
+   - Items stack full-width
+   - Dropdowns only show when parent has .is-active
+   ========================================================================== */
 @media (max-width: 1023px) {
-  .navbar-menu {
+  /* Allow the header row to wrap so the menu can sit under the brand */
+  nav.navbar .container {
+    flex-wrap: wrap; }
+  /* Keep brand on the first row, menu on the second */
+  nav.navbar .navbar-brand {
+    order: 1;
+    flex: 0 0 auto; }
+  nav.navbar .navbar-menu {
+    order: 2;
+    width: 100%;
+    flex-basis: 100%;
+    /* Neutralize any is-flex helpers on mobile; JS will toggle .is-active */
     display: none !important; }
-  .navbar-menu.is-active {
-    display: block !important; }
-  /* Stack items vertically in the mobile menu */
-  .navbar .navbar-end {
-    flex-direction: column; }
-  /* Dropdowns open when parent is toggled */
-  .navbar .navbar-item.has-dropdown .navbar-dropdown {
+  nav.navbar .navbar-menu.is-active {
+    display: block !important;
+    /* vertical dropdown under header */ }
+  /* Stack items vertically inside the opened mobile menu */
+  nav.navbar .navbar-end {
+    flex-direction: column;
+    align-items: stretch;
+    /* full-width tap targets */ }
+  nav.navbar .navbar-item {
+    width: 100%; }
+  /* Dropdown visibility on mobile: only when parent is active */
+  nav.navbar .navbar-item.has-dropdown .navbar-dropdown {
     display: none; }
-  .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
+  nav.navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
     display: block; } }
 
-/* Desktop (>= 1024px): burger hidden, menu visible */
+/* ==========================================================================
+   DESKTOP GUARDS (keep default desktop visibility; no visual changes)
+   ========================================================================== */
 @media (min-width: 1024px) {
-  .navbar-burger {
-    display: none !important; }
-  .navbar-menu {
-    display: flex !important; } }
+  nav.navbar .navbar-burger {
+    display: none !important;
+    /* burger hidden on desktop */ }
+  nav.navbar .navbar-menu {
+    display: flex !important;
+    /* menu visible on desktop */ } }
 
 /* ==========================================================================
 Dropdown styles
