@@ -9567,6 +9567,26 @@ body #backtotop a {
   border-radius: 4px;
   background-color: transparent; }
 
+/* Mobile: stack the note below the heading */
+@media (max-width: 640px) {
+  .note-box {
+    position: static;
+    /* stop absolute positioning */
+    right: auto;
+    top: auto;
+    display: block;
+    /* new line below the H1 */
+    width: max-content;
+    /* snug to text (not full width) */
+    margin-top: 0.5rem;
+    /* a little spacing under H1 */
+    text-align: left;
+    /* left-aligned text */
+    font-size: 0.95rem;
+    /* optional: slightly smaller */
+    border-width: 1px;
+    /* optional: lighter border on mobile */ } }
+
 /* ==========================================================================
    Fresh Footer
    ========================================================================== */
