@@ -88,7 +88,7 @@ Watch this space. 👀">
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.1889d127c0d21b8d275fe14641e9b793e6b77540df6db4b32e5d7567d91004bc.css" integrity="sha256-GInRJ8DSG40nX&#43;FGQem3k&#43;a3dUDfbbSzLl11Z9kQBLw=">
+<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.e0e8d46d5407357c2d4190642b9a5679db22d119a1cc743d439d4fa43a4f7f52.css" integrity="sha256-4OjUbVQHNXwtQZBkK5pWedsi0RmhzHQ9Q51PpDpPf1I=">
 <link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/icons.css">
 
   </head>
@@ -113,6 +113,7 @@ Watch this space. 👀">
           style="height: 30px; max-width: 600px; width: auto;">
       </a>
 
+      
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -121,6 +122,7 @@ Watch this space. 👀">
     </div>
 
     <div id="navbar-menu" class="navbar-menu is-flex is-align-items-center" style="flex-grow: 1;">
+      
 
       <div class="navbar-end is-flex is-align-items-center">
             <a href="https://www.luminasolutions.co.nz/" class="navbar-item is-secondary">HOME</a>
@@ -155,11 +157,11 @@ Watch this space. 👀">
 </nav>
 
 <script>
+ 
 document.addEventListener('DOMContentLoaded', function () {
   var HOME_PATH = new URL('\/', window.location.origin).pathname;
   var HASH = '#section2';
 
-  
   function getScrollParent(el) {
     var style, overflowY;
     for (var p = el; p && p !== document.body; p = p.parentElement) {
@@ -167,7 +169,6 @@ document.addEventListener('DOMContentLoaded', function () {
       overflowY = style.overflowY;
       if (overflowY === 'auto' || overflowY === 'scroll') return p;
     }
-    
     return document.scrollingElement || document.documentElement;
   }
 
@@ -187,99 +188,67 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href]');
     if (!a) return;
 
     var href = a.getAttribute('href') || '';
-    
     var url;
     try { url = new URL(href, window.location.href); } catch (_) { return; }
     if (url.hash !== HASH) return;
 
-    
     var onHome = window.location.pathname === HOME_PATH;
-    e.preventDefault(); 
+    e.preventDefault();
 
     if (!onHome) {
       window.location.assign(HOME_PATH + HASH);
       return;
     }
 
-    
     var target = document.getElementById(HASH.slice(1));
     if (!target) {
-      
       window.location.hash = HASH;
       return;
     }
 
-    
     if (window.location.hash === HASH && history && history.replaceState) {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 
     scrollToTarget(target);
 
-    
     if (history && history.replaceState) {
       history.replaceState(null, '', HASH);
     }
 
-    
     document.getElementById('navbar-menu')?.classList.remove('is-active');
     document.querySelector('.navbar-burger')?.classList.remove('is-active');
-  }, true); 
+  }, true);
 });
 </script>
 
-
 <script>
+ 
 document.addEventListener('DOMContentLoaded', function () {
   var HOME_PATH = new URL('\/', window.location.origin).pathname;
   var HASH = '#section2';
-  var CLOSE_MS = 500; 
+  var CLOSE_MS = 500;
 
   function closeDropdownUI() {
-    
     document.querySelectorAll('.navbar .navbar-item.has-dropdown.is-active')
       .forEach(function(el){ el.classList.remove('is-active'); });
 
-    
     document.body.classList.add('force-close-dropdown');
     setTimeout(function(){ document.body.classList.remove('force-close-dropdown'); }, CLOSE_MS);
-  }
-
-  function scrollToSection2IfNeeded() {
-    var target = document.getElementById('section2');
-    if (!target) return;
-    
-    
-    
-    
-    
-    
   }
 
   document.addEventListener('click', function (e) {
     var link = e.target.closest('.navbar .navbar-link[href="https://www.luminasolutions.co.nz/#section2"], .navbar .navbar-link[href="#section2"]');
     if (!link) return;
 
-    
     closeDropdownUI();
-
-    
-    
-    
-    
-    
-    
-    
-
-    
     try { link.blur(); } catch(_) {}
-  }, true); 
+  }, true);
 });
 </script>
 
@@ -372,6 +341,63 @@ Stay curious.<br>
 <script src="https://www.luminasolutions.co.nz/js/fresh.js"></script>
 <script src="https://www.luminasolutions.co.nz/js/jquery.panelslider.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+
+<script>
+(function () {
+  var mq = window.matchMedia('(max-width: 1023px)');
+  var sidebar = document.getElementById('mobile-sidebar');
+  if (!sidebar) return;
+
+  
+  function openSidebar(triggerEl) {
+    sidebar.classList.add('is-active');
+    document.documentElement.classList.add('is-clipped'); 
+    
+    var wrap = triggerEl && triggerEl.querySelector('.menu-icon-wrapper');
+    if (wrap) wrap.classList.add('open');
+  }
+  function closeSidebar() {
+    sidebar.classList.remove('is-active');
+    document.documentElement.classList.remove('is-clipped');
+    document.querySelectorAll('.menu-icon-wrapper.open').forEach(function(w){ w.classList.remove('open'); });
+  }
+
+  
+  document.addEventListener('click', function (e) {
+    var opener = e.target.closest('[data-sidebar-open]');
+    if (opener && mq.matches) {
+      e.preventDefault();
+      openSidebar(opener);
+      return;
+    }
+    
+    if (e.target.closest('[data-sidebar-close]') && mq.matches) {
+      e.preventDefault();
+      closeSidebar();
+      return;
+    }
+    
+    if (e.target.closest('.sidebar .sidebar-menu a') && mq.matches) {
+      closeSidebar();
+      return;
+    }
+  }, true);
+
+  
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mq.matches) closeSidebar();
+  });
+
+  
+  mq.addEventListener ? mq.addEventListener('change', function () {
+    if (!mq.matches) closeSidebar();
+  }) : mq.addListener(function(){ if (!mq.matches) closeSidebar(); });
+
+  
+  if (window.feather && feather.replace) feather.replace();
+})();
+</script>
 
   </body>
 </html>

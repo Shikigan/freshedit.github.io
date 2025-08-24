@@ -7799,26 +7799,13 @@ Color variables
 /* ========================================================================== 
 Navbar
 ========================================================================== */
-/* Header / Navbar stays for DESKTOP. On mobile+tablet the sidebar takes over. */
-/* Navbar */
 .navbar.is-fresh {
   position: relative;
   min-height: 6rem;
-  /* Keep navbar height the same */
   transition: all .3s;
-  z-index: 99;
-  background: #fff;
-  /* ensure white background */
-  /* Responsive menu icon (Bulma burger). If you are NOT using it,
-     we'll hide it on mobile below; if you do use it to open the sidebar,
-     keep it and wire it to the sidebar JS. */
-  /* Brand container */
-  /* Remove navbar item default hover bg */
-  /* Navbar items */
-  /* Fixed navbar modifier */ }
+  z-index: 99; }
   .navbar.is-fresh .container {
-    min-height: 6rem;
-    /* Keep container height the same */ }
+    min-height: 6rem; }
   .navbar.is-fresh.no-shadow {
     box-shadow: none !important; }
   .navbar.is-fresh .navbar-burger {
@@ -7828,9 +7815,9 @@ Navbar
     min-height: 6rem !important;
     /* Keep height the same */
     max-width: 600px !important;
-    /* Cap width */
+    /* Increase the width to 500px (adjust as needed) */
     width: 100% !important;
-    /* Allow full available width */
+    /* Allow it to take full available width */
     display: flex;
     justify-content: flex-start;
     /* Align brand to the left */ }
@@ -7843,13 +7830,14 @@ Navbar
     max-width: 500px;
     /* Optional cap */
     margin-top: 6px;
-    /* Adjust to move the logo down */ }
+    /* Adjust this value to move the logo down */ }
   .navbar.is-fresh:hover .navbar-item {
     background: transparent !important; }
   .navbar.is-fresh .navbar-end {
     align-items: center; }
   .navbar.is-fresh .navbar-item {
     font-family: 'Inter', sans-serif;
+    /* Apply Bebas Neue font */
     font-weight: bold;
     color: #1e242c;
     font-size: 15px;
@@ -7888,7 +7876,6 @@ Navbar
     left: 0;
     width: 100%;
     min-height: 6rem !important;
-    /* Keep height the same */
     background: #fff;
     box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
     .navbar.is-fresh.is-fixed a {
@@ -7896,7 +7883,6 @@ Navbar
       .navbar.is-fresh.is-fixed a:hover {
         color: #4FC1EA; }
 
-/* Cloned fixed navbar (Fresh theme’s sticky clone) */
 #navbar-clone {
   position: fixed;
   top: 0;
@@ -7924,30 +7910,6 @@ body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
 /* Change dropdown link text color on hover */
 .navbar .navbar-dropdown .navbar-item:hover {
   color: #1ae0b6 !important; }
-
-/* ========================================================================== 
-   RESPONSIVE BEHAVIOR (Header desktop-only, Sidebar mobile/tablet)
-   ========================================================================== */
-/* MOBILE + TABLET: hide header nav; use SIDEBAR instead */
-@media (max-width: 1023px) {
-  /* Hide header menu items (we’ll show the sidebar’s menu instead) */
-  .navbar.is-fresh .navbar-menu {
-    display: none !important; }
-  /* Hide sticky clone on small screens to avoid double headers */
-  #navbar-clone {
-    display: none !important;
-    transform: none !important; }
-  /* Optional: if you’re NOT using Bulma’s burger at all,
-     hide it to avoid confusion. If you *do* use it to open the sidebar,
-     comment this out. */
-  .navbar.is-fresh .navbar-burger {
-    display: none !important; } }
-
-/* DESKTOP: keep header; hide SIDEBAR + its trigger */
-@media (min-width: 1024px) {
-  .sidebar,
-  .menu-icon-wrapper {
-    display: none !important; } }
 
 /* ==========================================================================
 Dropdown styles
@@ -8800,9 +8762,7 @@ Sidebar Styles
         font-size: .8rem; }
     .sidebar .inner li.have-children, .sidebar .inner li {
       position: relative; }
-    .sidebar .inner li.have-children.active > a,
-    .sidebar .inner li.have-children.active > a span,
-    .sidebar .inner li.have-children.active > a span:after {
+    .sidebar .inner li.have-children.active > a, .sidebar .inner li.have-children.active > a span, .sidebar .inner li.have-children.active > a span:after {
       color: #0dceae; }
     .sidebar .inner li.active.have-children span::after {
       -moz-transform: rotate(90deg);
@@ -8811,16 +8771,6 @@ Sidebar Styles
       transform: rotate(90deg); }
     .sidebar .inner .sidebar-menu .have-children > ul {
       display: none; }
-
-/* ============================================================
-   Visibility control: hide sidebar & trigger on DESKTOP only
-   (allow on mobile & tablet)
-   ============================================================ */
-@media screen and (min-width: 1024px) {
-  .sidebar {
-    display: none !important; }
-  .menu-icon-wrapper {
-    display: none !important; } }
 
 /* ==========================================================================
 Testimonials Styles
