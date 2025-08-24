@@ -7917,6 +7917,22 @@ body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
   .navbar.is-fresh .navbar-item.has-dropdown.is-active .navbar-dropdown {
     display: block; } }
 
+/* Mobile menu parity with Bulma: hidden until burger adds .is-active */
+@media (max-width: 1023px) {
+  .navbar-menu {
+    display: none !important; }
+  .navbar-menu.is-active {
+    display: block !important;
+    /* Bulma uses block; stacks items vertically */ }
+  /* Ensure dropdowns open when parent gets .is-active on mobile */
+  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
+    display: none; }
+  .navbar.is-fresh .navbar-item.has-dropdown.is-active .navbar-dropdown {
+    display: block; }
+  /* If your .navbar-end had flex utilities, stack them on mobile */
+  .navbar .navbar-end {
+    flex-direction: column; } }
+
 /* ==========================================================================
 Dropdown styles
 ========================================================================== */
