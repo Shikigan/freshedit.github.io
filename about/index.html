@@ -64,24 +64,31 @@ Watch this space. 👀">
     <link rel="canonical" href="https://www.luminasolutions.co.nz/about/">
 
     
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     
     <link rel="icon" type="image/png" href="https://www.luminasolutions.co.nz/images/new/favicon.png">
 
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.css" />
+
     
     <script src="https://cdn.jsdelivr.net/npm/glider-js@1/glider.min.js"></script>
 
-    <title>Lumina Solutions</title>
 
+
+    
+    <title>Lumina Solutions</title>
+    
     
   
 <link rel="icon" type="image/svg+xml" href="https://www.luminasolutions.co.nz/images/new/favicon.svg">
 <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.d206f3a841d7e1b324866b26383cc82e1287860f414552ff3ef6a2add7b8bfae.css" integrity="sha256-0gbzqEHX4bMkhmsmODzILhKHhg9BRVL/Pvairde4v64=">
+<link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/style.min.a27263c56801470be8f232932614b6cb62fab89d84e63d7a1df061445541c8c7.css" integrity="sha256-onJjxWgBRwvo8jKTJhS2y2L6uJ2E5j16HfBhRFVByMc=">
 <link rel="stylesheet" type="text/css" href="https://www.luminasolutions.co.nz/css/icons.css">
 
   </head>
@@ -106,7 +113,14 @@ Watch this space. 👀">
           style="height: 30px; max-width: 600px; width: auto;">
       </a>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-controls="navbar-menu"
+        aria-expanded="false"
+        data-target="navbar-menu"
+      >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -118,11 +132,9 @@ Watch this space. 👀">
       <div class="navbar-end is-flex is-align-items-center">
             <a href="https://www.luminasolutions.co.nz/" class="navbar-item is-secondary">HOME</a>
             <a href="https://www.luminasolutions.co.nz/projects/" class="navbar-item is-secondary">PROJECTS</a>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a
+            <div class="navbar-item has-dropdown is-hoverable"><a
                   class="navbar-link"
-                  href="https://www.luminasolutions.co.nz/#section2"
-                >PRODUCTS</a>
+                  href="https://www.luminasolutions.co.nz/#section2"id="nav-products">PRODUCTS</a>
               <div class="navbar-dropdown">
                   <a
                     class="navbar-item"
@@ -148,11 +160,17 @@ Watch this space. 👀">
 </nav>
 
 <script>
+ 
 document.addEventListener('DOMContentLoaded', function () {
   var HOME_PATH = new URL('\/', window.location.origin).pathname;
   var HASH = '#section2';
+  var HOVER_SUPPRESS_MS = 500;
 
   
+  function isDesktop() {
+    
+    return window.matchMedia('(min-width: 1024px)').matches;
+  }
   function getScrollParent(el) {
     var style, overflowY;
     for (var p = el; p && p !== document.body; p = p.parentElement) {
@@ -160,25 +178,76 @@ document.addEventListener('DOMContentLoaded', function () {
       overflowY = style.overflowY;
       if (overflowY === 'auto' || overflowY === 'scroll') return p;
     }
-    
     return document.scrollingElement || document.documentElement;
   }
-
-  function scrollToTarget(target) {
-    var root = getScrollParent(target);
-    var navClone = document.getElementById('navbar-clone');
-    var navMain  = document.querySelector('.navbar.is-fresh');
-    var visibleNav = (navClone && navClone.classList.contains('is-active')) ? navClone : navMain;
-    var offset = visibleNav ? visibleNav.getBoundingClientRect().height : 0;
-
-    var targetTop = target.getBoundingClientRect().top + (root === document.documentElement ? window.pageYOffset : root.scrollTop) - offset;
-
-    if (root === document.documentElement) {
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    } else {
-      root.scrollTo({ top: targetTop, behavior: 'smooth' });
-    }
+  function visibleNavHeight() {
+    var clone = document.getElementById('navbar-clone');
+    var main  = document.querySelector('nav.navbar.is-fresh');
+    var visible = (clone && clone.classList.contains('is-active')) ? clone : main;
+    return visible ? visible.getBoundingClientRect().height : 0;
   }
+  function closeAllNav() {
+    document.querySelectorAll('.navbar-burger.is-active').forEach(function (b) {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-expanded', 'false');
+    });
+    document.querySelectorAll('.navbar-menu.is-active').forEach(function (m) {
+      m.classList.remove('is-active');
+    });
+    document.querySelectorAll('.navbar-item.has-dropdown.is-active').forEach(function (d) {
+      d.classList.remove('is-active');
+    });
+  }
+
+  
+  function initNavbar(root) {
+    if (!root) return;
+
+    
+    var burger = root.querySelector('.navbar-burger[data-target]');
+    if (burger) {
+      var targetId = burger.getAttribute('data-target');
+      var menu = document.getElementById(targetId);
+      burger.addEventListener('click', function () {
+        var active = burger.classList.toggle('is-active');
+        burger.setAttribute('aria-expanded', active ? 'true' : 'false');
+        if (menu) menu.classList.toggle('is-active');
+      });
+    }
+
+    
+    root.querySelectorAll('.navbar-item.has-dropdown > .navbar-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (isDesktop()) return; 
+        e.preventDefault();
+        var item = link.closest('.navbar-item.has-dropdown');
+        
+        root.querySelectorAll('.navbar-item.has-dropdown.is-active').forEach(function (d) {
+          if (d !== item) d.classList.remove('is-active');
+        });
+        item.classList.toggle('is-active');
+      });
+    });
+
+    
+    root.querySelectorAll('.navbar-menu a.navbar-item, .navbar-menu a.navbar-link').forEach(function (a) {
+      a.addEventListener('click', function () {
+        
+        if (!isDesktop() && a.classList.contains('navbar-link') && a.closest('.has-dropdown')) return;
+        
+        closeAllNav();
+      });
+    });
+  }
+
+  
+  initNavbar(document.querySelector('nav.navbar.is-fresh:not(#navbar-clone)'));
+  initNavbar(document.getElementById('navbar-clone'));
+
+  
+  window.addEventListener('resize', function () {
+    if (isDesktop()) closeAllNav();
+  });
 
   
   document.addEventListener('click', function (e) {
@@ -186,21 +255,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!a) return;
 
     var href = a.getAttribute('href') || '';
-    
     var url;
     try { url = new URL(href, window.location.href); } catch (_) { return; }
     if (url.hash !== HASH) return;
 
     
-    var onHome = window.location.pathname === HOME_PATH;
-    e.preventDefault(); 
+    e.preventDefault();
 
+    var onHome = window.location.pathname === HOME_PATH;
     if (!onHome) {
+      
       window.location.assign(HOME_PATH + HASH);
       return;
     }
 
-    
     var target = document.getElementById(HASH.slice(1));
     if (!target) {
       
@@ -213,7 +281,18 @@ document.addEventListener('DOMContentLoaded', function () {
       history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 
-    scrollToTarget(target);
+    
+    var root = getScrollParent(target);
+    var offset = visibleNavHeight();
+    var targetTop = target.getBoundingClientRect().top +
+                    (root === document.documentElement ? window.pageYOffset : root.scrollTop) -
+                    offset;
+
+    if (root === document.documentElement) {
+      window.scrollTo({ top: targetTop, behavior: 'smooth' });
+    } else {
+      root.scrollTo({ top: targetTop, behavior: 'smooth' });
+    }
 
     
     if (history && history.replaceState) {
@@ -221,58 +300,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     
-    document.getElementById('navbar-menu')?.classList.remove('is-active');
-    document.querySelector('.navbar-burger')?.classList.remove('is-active');
-  }, true); 
-});
-</script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  var HOME_PATH = new URL('\/', window.location.origin).pathname;
-  var HASH = '#section2';
-  var CLOSE_MS = 500; 
-
-  function closeDropdownUI() {
-    
-    document.querySelectorAll('.navbar .navbar-item.has-dropdown.is-active')
-      .forEach(function(el){ el.classList.remove('is-active'); });
-
-    
+    closeAllNav();
     document.body.classList.add('force-close-dropdown');
-    setTimeout(function(){ document.body.classList.remove('force-close-dropdown'); }, CLOSE_MS);
-  }
-
-  function scrollToSection2IfNeeded() {
-    var target = document.getElementById('section2');
-    if (!target) return;
-    
-    
-    
-    
-    
-    
-  }
-
-  document.addEventListener('click', function (e) {
-    var link = e.target.closest('.navbar .navbar-link[href="https://www.luminasolutions.co.nz/#section2"], .navbar .navbar-link[href="#section2"]');
-    if (!link) return;
-
-    
-    closeDropdownUI();
-
-    
-    
-    
-    
-    
-    
-    
-
-    
-    try { link.blur(); } catch(_) {}
-  }, true); 
+    setTimeout(function () {
+      document.body.classList.remove('force-close-dropdown');
+    }, HOVER_SUPPRESS_MS);
+  }, true);
 });
 </script>
 
@@ -285,7 +318,14 @@ document.addEventListener('DOMContentLoaded', function () {
         <img src="https://www.luminasolutions.co.nz/images/new/logo_header.svg" alt="" width="112" height="28">
       </a>
 
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="cloned-navbar-menu">
+      <a
+        role="button"
+        class="navbar-burger"
+        aria-label="menu"
+        aria-controls="cloned-navbar-menu"
+        aria-expanded="false"
+        data-target="cloned-navbar-menu"
+      >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -365,19 +405,6 @@ Stay curious.<br>
 <script src="https://www.luminasolutions.co.nz/js/fresh.js"></script>
 <script src="https://www.luminasolutions.co.nz/js/jquery.panelslider.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
-
-<script>
-document.addEventListener('DOMContentLoaded',function(){
-  var burgers=[].slice.call(document.querySelectorAll('.navbar-burger'));
-  burgers.forEach(function(b){
-    b.addEventListener('click',function(){
-      var t=document.getElementById(b.dataset.target);
-      b.classList.toggle('is-active'); if(t) t.classList.toggle('is-active');
-    });
-  });
-});
-</script>
 
   </body>
 </html>

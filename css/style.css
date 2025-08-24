@@ -7799,17 +7799,11 @@ Color variables
 /* ==========================================================================
 Navbar
 ========================================================================== */
-/* Base navbar block */
 .navbar.is-fresh {
   position: relative;
   min-height: 6rem;
   transition: all .3s;
-  z-index: 99;
-  /* Burger size only; visibility handled by Bulma */
-  /* Brand / logo */
-  /* Remove Bulma bg on hover */
-  /* Items & dropdowns */
-  /* Fixed modifier (Fresh sticky behavior) */ }
+  z-index: 99; }
   .navbar.is-fresh .container {
     min-height: 6rem; }
   .navbar.is-fresh.no-shadow {
@@ -7819,16 +7813,24 @@ Navbar
     height: 4rem; }
   .navbar.is-fresh .navbar-brand {
     min-height: 6rem !important;
+    /* Keep height the same */
     max-width: 600px !important;
+    /* Increase the width cap */
     width: 100% !important;
+    /* Allow it to take full available width */
     display: flex;
-    justify-content: flex-start; }
-  .navbar.is-fresh .navbar-brand img {
-    max-height: none !important;
-    height: 55px !important;
-    width: auto !important;
-    max-width: 500px;
-    margin-top: 6px; }
+    justify-content: flex-start;
+    /* Align brand to the left */ }
+    .navbar.is-fresh .navbar-brand img {
+      max-height: none !important;
+      height: 55px !important;
+      /* Keep height consistent */
+      width: auto !important;
+      /* Let width scale naturally */
+      max-width: 500px;
+      /* Optional cap */
+      margin-top: 6px;
+      /* Adjust to move the logo down */ }
   .navbar.is-fresh:hover .navbar-item {
     background: transparent !important; }
   .navbar.is-fresh .navbar-end {
@@ -7880,7 +7882,6 @@ Navbar
       .navbar.is-fresh.is-fixed a:hover {
         color: #4FC1EA; }
 
-/* Cloned sticky navbar container */
 #navbar-clone {
   position: fixed;
   top: 0;
@@ -7893,51 +7894,28 @@ Navbar
   #navbar-clone.is-active {
     transform: translateY(0); }
 
-/* ===============================
-   Bulma-correct burger behavior
-   =============================== */
-/* Hidden by default on mobile; Bulma shows it on desktop automatically */
-.navbar-menu {
-  display: none; }
-
-.navbar-menu.is-active {
-  display: block;
-  width: 100%;
-  background: #fff; }
-
-/* Mobile layout of the dropdown */
-@media (max-width: 1023px) {
-  .navbar-menu.is-active {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 20;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08); }
-  .navbar-menu .navbar-end {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 1rem; }
-  .navbar-menu .navbar-item {
-    width: 100%; } }
-
-/* Desktop: always show menu as flex (Bulma default) */
-@media (min-width: 1024px) {
-  .navbar-menu {
-    display: flex !important; } }
-
-/* Optional: help when forcing dropdown to close after click */
+/* Force-close dropdowns right after clicking PRODUCTS, even if still hovered */
 body.force-close-dropdown .navbar .navbar-item.has-dropdown .navbar-dropdown {
   display: none !important; }
 
 body.force-close-dropdown .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
   display: none !important; }
 
+/* (Optional) avoid stuck visual state on parent while closing */
 body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
-  pointer-events: none; }
+  pointer-events: none;
+  /* briefly ignore hover while we close */ }
 
-/* Hover color in dropdown */
+/* Change dropdown link text color on hover */
 .navbar .navbar-dropdown .navbar-item:hover {
   color: #1ae0b6 !important; }
+
+/* Mobile dropdown behavior: when parent gets .is-active, show its dropdown */
+@media (max-width: 1023px) {
+  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
+    display: none; }
+  .navbar.is-fresh .navbar-item.has-dropdown.is-active .navbar-dropdown {
+    display: block; } }
 
 /* ==========================================================================
 Dropdown styles
