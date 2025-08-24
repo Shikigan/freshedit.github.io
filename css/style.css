@@ -7797,91 +7797,27 @@ Main SCSS file / Fresh
 Color variables
 ========================================================================== */
 /* ==========================================================================
-Navbar
+Navbar (Fresh-compatible)
 ========================================================================== */
 .navbar.is-fresh {
   position: relative;
-  min-height: 6rem;
   transition: all .3s;
-  z-index: 99; }
-  .navbar.is-fresh .container {
-    min-height: 6rem; }
-  .navbar.is-fresh.no-shadow {
-    box-shadow: none !important; }
+  z-index: 99;
+  /* Optional: light hover polish for dropdown link */ }
   .navbar.is-fresh .navbar-burger {
     width: 4rem;
     height: 4rem; }
-  .navbar.is-fresh .navbar-brand {
-    min-height: 6rem !important;
-    /* Keep height the same */
-    max-width: 600px !important;
-    /* Increase the width cap */
-    width: 100% !important;
-    /* Allow it to take full available width */
-    display: flex;
-    justify-content: flex-start;
-    /* Align brand to the left */ }
-    .navbar.is-fresh .navbar-brand img {
-      max-height: none !important;
-      height: 55px !important;
-      /* Keep height consistent */
-      width: auto !important;
-      /* Let width scale naturally */
-      max-width: 500px;
-      /* Optional cap */
-      margin-top: 6px;
-      /* Adjust to move the logo down */ }
-  .navbar.is-fresh:hover .navbar-item {
-    background: transparent !important; }
   .navbar.is-fresh .navbar-end {
     align-items: center; }
-  .navbar.is-fresh .navbar-item {
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    color: #1e242c;
-    font-size: 15px;
-    overflow: visible !important;
-    max-width: none !important; }
-    .navbar.is-fresh .navbar-item.is-secondary:hover {
-      color: #0dceae !important; }
-    .navbar.is-fresh .navbar-item.has-dropdown {
-      padding: 10px 0; }
-      .navbar.is-fresh .navbar-item.has-dropdown .navbar-link {
-        color: inherit; }
-        .navbar.is-fresh .navbar-item.has-dropdown .navbar-link:after {
-          top: 55%;
-          height: 0.5em;
-          width: 0.5em;
-          border-width: 2px;
-          border-color: #999; }
-      .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
-        top: 3.4rem;
-        min-width: 220px;
-        margin-top: 4px;
-        border-top-color: #0dceae; }
-        .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown .navbar-item {
-          padding: 10px 20px; }
-      .navbar.is-fresh .navbar-item.has-dropdown:hover .navbar-link {
-        color: #0dceae; }
-        .navbar.is-fresh .navbar-item.has-dropdown:hover .navbar-link:after {
-          border-color: #0dceae; }
-    .navbar.is-fresh .navbar-item .signup {
-      display: block;
-      line-height: 0;
-      font-size: .9rem !important; }
-  .navbar.is-fresh.is-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 6rem !important;
-    background: #fff;
-    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
-    .navbar.is-fresh.is-fixed a {
-      color: #444F60; }
-      .navbar.is-fresh.is-fixed a:hover {
-        color: #4FC1EA; }
+  .navbar.is-fresh .navbar-item.has-dropdown .navbar-link:after {
+    top: 55%;
+    height: 0.5em;
+    width: 0.5em;
+    border-width: 2px; }
+  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
+    min-width: 220px; }
 
+/* Sticky clone animation container */
 #navbar-clone {
   position: fixed;
   top: 0;
@@ -7891,47 +7827,32 @@ Navbar
   transform: translateY(-100%);
   z-index: 100;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.12); }
-  #navbar-clone.is-active {
-    transform: translateY(0); }
 
-/* Force-close dropdowns right after clicking PRODUCTS, even if still hovered */
-body.force-close-dropdown .navbar .navbar-item.has-dropdown .navbar-dropdown {
-  display: none !important; }
+#navbar-clone.is-active {
+  transform: translateY(0); }
 
-body.force-close-dropdown .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
-  display: none !important; }
-
-/* (Optional) avoid stuck visual state on parent while closing */
-body.force-close-dropdown .navbar .navbar-item.has-dropdown > .navbar-link {
-  pointer-events: none;
-  /* briefly ignore hover while we close */ }
-
-/* Change dropdown link text color on hover */
-.navbar .navbar-dropdown .navbar-item:hover {
-  color: #1ae0b6 !important; }
-
-/* Mobile dropdown behavior: when parent gets .is-active, show its dropdown */
-@media (max-width: 1023px) {
-  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
-    display: none; }
-  .navbar.is-fresh .navbar-item.has-dropdown.is-active .navbar-dropdown {
-    display: block; } }
-
-/* Mobile menu parity with Bulma: hidden until burger adds .is-active */
+/* === Bulma parity guards === */
+/* Mobile (<= 1023px): burger visible, menu hidden until active */
 @media (max-width: 1023px) {
   .navbar-menu {
     display: none !important; }
   .navbar-menu.is-active {
-    display: block !important;
-    /* Bulma uses block; stacks items vertically */ }
-  /* Ensure dropdowns open when parent gets .is-active on mobile */
-  .navbar.is-fresh .navbar-item.has-dropdown .navbar-dropdown {
-    display: none; }
-  .navbar.is-fresh .navbar-item.has-dropdown.is-active .navbar-dropdown {
-    display: block; }
-  /* If your .navbar-end had flex utilities, stack them on mobile */
+    display: block !important; }
+  /* Stack items vertically in the mobile menu */
   .navbar .navbar-end {
-    flex-direction: column; } }
+    flex-direction: column; }
+  /* Dropdowns open when parent is toggled */
+  .navbar .navbar-item.has-dropdown .navbar-dropdown {
+    display: none; }
+  .navbar .navbar-item.has-dropdown.is-active .navbar-dropdown {
+    display: block; } }
+
+/* Desktop (>= 1024px): burger hidden, menu visible */
+@media (min-width: 1024px) {
+  .navbar-burger {
+    display: none !important; }
+  .navbar-menu {
+    display: flex !important; } }
 
 /* ==========================================================================
 Dropdown styles
