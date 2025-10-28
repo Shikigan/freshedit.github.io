@@ -9587,6 +9587,503 @@ body #backtotop a {
     border-width: 1px;
     /* optional: lighter border on mobile */ } }
 
+.breadcrumbs {
+  font-size: 0.95rem;
+  color: #000;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: inherit;
+  /* ✅ force consistent font */ }
+
+.breadcrumb-link {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+  /* Match current page styling */ }
+
+.breadcrumb-link:hover {
+  color: #43ac9d; }
+
+.breadcrumb-separator {
+  margin: 0 0.25rem;
+  color: #000; }
+
+.breadcrumb-current {
+  color: #000;
+  font-weight: 500; }
+
+/* ============================
+   HERO + PRODUCT SECTION
+   ============================ */
+.custom-eko {
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: rem; }
+
+.custom-eko .image-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; }
+
+.custom-eko .block-heading {
+  text-align: left; }
+
+.custom-eko .block-heading h1 {
+  margin: 0;
+  font-size: 2rem;
+  margin-bottom: 2.5rem; }
+
+.custom-eko .content-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem; }
+
+.custom-eko .image-holder {
+  flex: 0 0 auto; }
+
+.custom-eko .image-holder img {
+  width: 550px;
+  height: auto;
+  border-radius: 8px; }
+
+.image-container {
+  width: 500px;
+  /* or any size you want */
+  height: 420px;
+  /* fixed height */
+  overflow: hidden;
+  /* clip the image inside */
+  position: relative;
+  /* required for positioning image absolutely if needed */
+  border-radius: 8px;
+  background: #ffffff;
+  /* optional: placeholder background */ }
+
+.image-container img {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.1);
+  /* ✅ Zoom in manually */
+  transform-origin: center center;
+  /* ✅ Where to zoom from */ }
+
+.custom-eko .text-content {
+  flex: 1 1 0%;
+  min-width: 300px;
+  max-width: 1500px;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-left: auto; }
+
+.custom-eko .text-content h3 {
+  margin-top: 0rem;
+  margin-bottom: 1.2rem;
+  font-size: 1.25rem; }
+
+.custom-eko .text-content ul:not(.custom-bullets) {
+  padding-left: 1.2rem; }
+
+.custom-eko .text-content ul.custom-bullets {
+  padding-left: 0 !important;
+  list-style: none !important;
+  margin: 0; }
+
+.custom-eko .text-content .downloads {
+  margin-top: 1rem; }
+
+.custom-eko .text-content .downloads a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #000;
+  text-decoration: underline; }
+
+.custom-eko .custom-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 0; }
+
+.custom-eko .custom-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.8;
+  position: relative; }
+
+/* ✅ Direct <svg> styling (no .icon wrapper needed) */
+.custom-eko .custom-bullets svg {
+  width: 24px;
+  height: 24px;
+  stroke: #43ac9d;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0; }
+
+/* ✅ Remove legacy bullet arrows */
+.custom-eko .custom-bullets li::before {
+  content: none; }
+
+@media (max-width: 1500px) {
+  .custom-eko .content-row {
+    flex-direction: column; }
+  .custom-eko .text-content {
+    max-width: 100%;
+    margin-left: 0; }
+  .custom-eko .image-holder img {
+    width: 100%;
+    max-width: 100%; } }
+
+/* ============================
+   SPECS SECTION
+   ============================ */
+.specs-section {
+  padding: 2rem 0;
+  /* ✅ TEXT SIZE CHANGE APPLIED BELOW */
+  font-size: 1.1rem; }
+
+.specs-section .specs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: stretch; }
+
+/* 🎯 Image Carousel Wrapper with Custom Sizing */
+.specs-section .specs-carousel {
+  flex: 1;
+  min-width: 300px;
+  max-width: var(--carousel-width, 500px);
+  height: var(--carousel-height, 500px);
+  position: relative;
+  overflow: hidden; }
+
+.specs-section .glider {
+  height: 100%; }
+
+.specs-section .carousel-slide {
+  width: 100%;
+  height: 100%; }
+
+.specs-section .carousel-slide img,
+.specs-section .glider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px; }
+
+/* Carousel Controls */
+.specs-section .glider-prev,
+.specs-section .glider-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ddd;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  z-index: 2; }
+
+.specs-section .glider-prev {
+  left: 0; }
+
+.specs-section .glider-next {
+  right: 0; }
+
+.specs-section .dots {
+  text-align: center;
+  padding-top: 1rem; }
+
+/* ============================
+   FEATURES TEXT STYLING
+   ============================ */
+.specs-section .features {
+  flex: 1;
+  background: #ffffff;
+  padding-top: 3rem;
+  padding-right: 2rem;
+  padding-bottom: 0rem;
+  padding-left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.specs-section > *:last-child {
+  margin-bottom: 0 !important; }
+
+.specs-section .features-content h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem; }
+
+/* ✅ TEXT SIZE CHANGE FOR FEATURE LIST PARAGRAPHS */
+.specs-section .features-list p {
+  font-size: 1rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.5; }
+
+/* ✅ LABEL BOXES ADDED */
+.features-list.aligned-specs p {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 0.6rem; }
+
+.specs-section .features-content .features-heading {
+  margin-top: 4rem;
+  margin-bottom: 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600; }
+
+.features-list.aligned-specs .label-box {
+  background-color: #ffffff;
+  color: #43ac9d;
+  font-weight: 600;
+  padding: 0.2rem 0.8rem;
+  width: 150px;
+  /* All label boxes same width */
+  display: inline-block;
+  text-align: right;
+  border-radius: 4px;
+  margin-right: 1rem;
+  box-sizing: border-box; }
+
+/* Old bullet style (kept in case reused) */
+.specs-section .features-content .custom-bullets {
+  list-style: none;
+  padding-left: 0; }
+
+.specs-section .features-content .custom-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem; }
+
+.specs-section .features-content .custom-bullets li::before {
+  content: "➤";
+  position: absolute;
+  left: 0;
+  top: 0.1rem;
+  color: #000;
+  font-size: 0.9rem; }
+
+/* Note text */
+.specs-section .features-content .note {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #ffffff; }
+
+.specs-section .downloads {
+  margin-top: 2rem; }
+
+.specs-section .downloads a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #000;
+  text-decoration: underline; }
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 900px) {
+  .specs-section .specs-container {
+    flex-direction: column; }
+  .specs-section .features {
+    padding: 1.5rem; }
+  .specs-section .specs-carousel {
+    width: 100%;
+    max-width: 100%;
+    height: auto; }
+  .specs-section .glider,
+  .specs-section .carousel-slide img {
+    height: auto;
+    max-height: 100%; }
+  .features-list.aligned-specs .label-box {
+    width: 100px;
+    /* Reduce box width on small screens if needed */
+    text-align: left; } }
+
+.specs-section {
+  padding-bottom: 0 !important;
+  /* ✅ forces bottom padding to zero */
+  margin-bottom: 0 !important;
+  /* ✅ prevents extra vertical spacing */ }
+
+.downloads-section {
+  margin-top: 0 !important; }
+
+/* ============================
+   DOWNLOAD SECTION
+   ============================ */
+.downloads-section {
+  margin-top: 0 !important;
+  background-color: #ffffff;
+  margin-bottom: 2rem; }
+
+.downloads-section > *:first-child {
+  margin-top: 0 !important; }
+
+.downloads-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem; }
+
+.downloads-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: #2b2b2b;
+  letter-spacing: 1px; }
+
+.download-row {
+  display: flex;
+  gap: 5rem;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.download-box {
+  flex: 1 1 200px;
+  max-width: 250px;
+  text-align: center;
+  padding: 1.2rem 1.5rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  text-decoration: none;
+  color: #2c2c2c;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid transparent; }
+
+.download-box:hover {
+  transform: translateY(-5px);
+  border-color: #1ae0b6;
+  box-shadow: 0 6px 18px rgba(67, 172, 157, 0.25); }
+
+/* Wrapper for icon and title */
+.download-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  /* spacing between icon and title */ }
+
+.download-row {
+  display: flex;
+  gap: 2rem;
+  /* reduced from 5rem so 4 boxes fit in one row */
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.download-icon svg {
+  width: 40px;
+  height: 40px;
+  fill: #43ac9d;
+  /* same green colour for all icons including warranty */
+  transition: transform 0.3s ease; }
+
+/* Animate icon on hover */
+.download-box:hover .icon-svg {
+  animation: bounceIcon 0.4s ease-in-out; }
+
+@keyframes bounceIcon {
+  0% {
+    transform: translateY(0); }
+  50% {
+    transform: translateY(-4px); }
+  100% {
+    transform: translateY(0); } }
+
+.download-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  line-height: 1.3; }
+
+.download-meta {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  width: 100%;
+  text-align: center; }
+
+.download-arrow {
+  font-size: 1rem;
+  color: #43ac9d; }
+
+/* Tighter gap so 4 fit comfortably */
+.download-row {
+  gap: 2rem;
+  /* was 5rem */ }
+
+/* Force one row on desktop, distribute space nicely */
+@media (min-width: 992px) {
+  .download-row {
+    flex-wrap: nowrap;
+    /* no wrapping on desktop */
+    justify-content: space-between;
+    gap: 1.5rem;
+    /* slightly tighter for mid-width desktops */ } }
+
+.block-heading-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem; }
+
+.block-heading h1 {
+  margin: 0; }
+
+.note-box {
+  position: absolute;
+  right: 0;
+  top: 0;
+  /* aligns with top of H1 */
+  text-align: left;
+  /* ← align text from the left */
+  font-size: 1rem;
+  font-weight: 500;
+  color: #1ae0b6;
+  line-height: 1.3;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid #1ae0b6;
+  /* grey border only */
+  border-radius: 4px;
+  background-color: transparent; }
+
+/* Mobile: stack the note below the heading */
+@media (max-width: 640px) {
+  .note-box {
+    position: static;
+    /* stop absolute positioning */
+    right: auto;
+    top: auto;
+    display: block;
+    /* new line below the H1 */
+    width: max-content;
+    /* snug to text (not full width) */
+    margin-top: 0.5rem;
+    /* a little spacing under H1 */
+    text-align: left;
+    /* left-aligned text */
+    font-size: 0.95rem;
+    /* optional: slightly smaller */
+    border-width: 1px;
+    /* optional: lighter border on mobile */ } }
+
 /* ==========================================================================
    Fresh Footer
    ========================================================================== */
